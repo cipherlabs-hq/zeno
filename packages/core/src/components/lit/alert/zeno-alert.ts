@@ -159,9 +159,14 @@ export class ZenoAlert extends ZenoElement {
       /* Actions */
       .alert__actions {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: var(--zeno-spacing-2);
         margin-top: var(--zeno-spacing-3);
+      }
+
+      .alert__actions--empty {
+        display: none;
       }
 
       /* Close button */
@@ -289,7 +294,25 @@ export class ZenoAlert extends ZenoElement {
   @property({ reflect: true }) variant: AlertVariant = 'info';
   @property({ reflect: true }) appearance: 'default' | 'filled' | 'outlined' =
     'default';
+  /**
+   * The heading. Prefer it to `title`, which the browser also shows as a
+   * tooltip when the pointer rests on the alert.
+   */
+  @property() heading = '';
+  /** The level of the heading in the page outline, 1 to 6. */
+  @property({ type: Number, attribute: 'heading-level' }) headingLevel = 3;
+  /** @deprecated Use `heading`. Kept for existing markup. */
   @property() override title = '';
+  /**
+   * How assistive technology hears the alert. `auto` makes `error` and
+   * `warning` assertive (`role="alert"`) and the other variants polite
+   * (`role="status"`). `off` is for an alert that is on the page from the
+   * start and is not news.
+   */
+  @property({ reflect: true }) live: 'auto' | 'polite' | 'assertive' | 'off' =
+    'auto';
+  /** The name of the close button. */
+  @property({ attribute: 'close-label' }) closeLabel = 'Close alert';
   @property() message?: string;
   @property() icon?: string;
   @property({ type: Boolean, reflect: true }) closable = false;
@@ -300,6 +323,25 @@ export class ZenoAlert extends ZenoElement {
   animateOut = false;
 
   @state() private isVisible = true;
+  @state() private hasActions = false;
+
+  private get politeness(): 'polite' | 'assertive' | 'off' {
+    if (this.live !== 'auto') return this.live;
+    return this.variant === 'error' || this.variant === 'warning'
+      ? 'assertive'
+      : 'polite';
+  }
+
+  private handleActionsChange(event: Event): void {
+    const slot = event.target as HTMLSlotElement;
+    this.hasActions = slot
+      .assignedNodes({ flatten: true })
+      .some(
+        node =>
+          node.nodeType === Node.ELEMENT_NODE ||
+          (node.textContent ?? '').trim() !== ''
+      );
+  }
 
   /**
    * Show the alert
@@ -371,11 +413,17 @@ export class ZenoAlert extends ZenoElement {
       <div
         class=${classMap(classes)}
         part="base"
-        role="alert"
-        aria-live="polite"
-        aria-atomic="true"
+        role=${
+          this.politeness === 'off'
+            ? nothing
+            : this.politeness === 'assertive'
+              ? 'alert'
+              : 'status'
+        }
+        aria-live=${this.politeness === 'off' ? nothing : this.politeness}
+        aria-atomic=${this.politeness === 'off' ? nothing : 'true'}
       >
-        <span class="alert__icon" part="icon">
+        <span class="alert__icon" part="icon" aria-hidden="true">
           <zeno-icon
             name=${iconName}
             size=${this.compact ? '16' : '20'}
@@ -384,8 +432,15 @@ export class ZenoAlert extends ZenoElement {
 
         <div class="alert__content" part="content">
           ${
-            this.title
-              ? html`<h3 class="alert__title" part="title">${this.title}</h3>`
+            this.heading || this.title
+              ? html`<div
+                  class="alert__title"
+                  part="title"
+                  role="heading"
+                  aria-level=${this.headingLevel}
+                >
+                  ${this.heading || this.title}
+                </div>`
               : nothing
           }
           ${
@@ -396,7 +451,15 @@ export class ZenoAlert extends ZenoElement {
               : html`<slot></slot>`
           }
 
-          <slot name="actions" class="alert__actions" part="actions"></slot>
+          <slot
+            name="actions"
+            class=${classMap({
+              alert__actions: true,
+              'alert__actions--empty': !this.hasActions,
+            })}
+            part="actions"
+            @slotchange=${this.handleActionsChange}
+          ></slot>
         </div>
 
         ${
@@ -406,7 +469,7 @@ export class ZenoAlert extends ZenoElement {
                   class="alert__close"
                   part="close"
                   type="button"
-                  aria-label="Close alert"
+                  aria-label=${this.closeLabel}
                   @click=${this.handleClose}
                 >
                   <zeno-icon

@@ -22,6 +22,7 @@ const sidebars: SidebarsConfig = {
     },
     'using-the-elements',
     'tokens',
+    'icons',
     'frameworks',
     {
       type: 'category',

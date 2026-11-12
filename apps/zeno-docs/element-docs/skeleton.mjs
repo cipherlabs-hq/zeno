@@ -66,9 +66,6 @@ export default {
     // .skeleton--animated on an ancestor. 229-240: width, height and animation
     // are not read and there is no part="base".
     'A paragraph with several lines is never animated. This layout also ignores `width`, `height` and `animation`, and has no `base` part.',
-    // zeno-skeleton.ts:275-277: aria-hidden="true" and aria-label="Loading" on
-    // the same div.
-    'The placeholder has `aria-label="Loading"` on an element that is also `aria-hidden="true"`, so the label is never read. The text is fixed English.',
     // zeno-skeleton.ts:230 has `this.lines || 3`, but 247 only takes that
     // branch when lines > 1.
     'A `paragraph` without `lines`, or with `lines="1"`, renders one bar. The code has a default of three lines that is never reached.',

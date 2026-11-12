@@ -4,6 +4,7 @@ import { styleMap } from 'lit/directives/style-map.js';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { ZenoElement } from '../base/zeno-element.js';
 import type { ComponentSize } from '../types.js';
+import { builtInIcons } from './icon-set.js';
 
 // Icon library registry
 const iconRegistry = new Map<string, string>();
@@ -157,7 +158,11 @@ export class ZenoIcon extends ZenoElement {
   ];
 
   @property({ reflect: true }) name?: string;
-  @property({ reflect: true }) size: ComponentSize = 'md';
+  /**
+   * A named size that follows the font size (`xs` to `xl`), or a number of
+   * pixels such as `16`.
+   */
+  @property({ reflect: true }) size: ComponentSize | `${number}` = 'md';
   @property({ reflect: true }) variant: 'outline' | 'fill' | 'both' = 'outline';
   @property({ type: Boolean, reflect: true }) rotate = false;
   @property({ type: Boolean, reflect: true }) pulse = false;
@@ -194,14 +199,22 @@ export class ZenoIcon extends ZenoElement {
     iconRegistry.clear();
   }
 
+  /** The size in pixels when `size` is a number. */
+  private get pixelSize(): number | undefined {
+    const pixels = Number(this.size);
+    return Number.isFinite(pixels) && pixels > 0 ? pixels : undefined;
+  }
+
   override render() {
+    const name = this.label || '';
     return html`
       <span
         part="base"
         class="icon"
-        role=${this.label ? 'img' : nothing}
-        aria-label=${this.label || nothing}
-        aria-hidden=${this.label ? nothing : 'true'}
+        style=${this.pixelSize ? `--icon-size: ${this.pixelSize}px` : nothing}
+        role=${name ? 'img' : nothing}
+        aria-label=${name || nothing}
+        aria-hidden=${name ? nothing : 'true'}
       >
         ${this.renderIcon()}
       </span>
@@ -229,27 +242,8 @@ export class ZenoIcon extends ZenoElement {
   }
 }
 
-// Preload some common icons
-ZenoIcon.registerIcons({
-  'chevron-down': '<polyline points="6 9 12 15 18 9"></polyline>',
-  'chevron-up': '<polyline points="18 15 12 9 6 15"></polyline>',
-  'chevron-left': '<polyline points="15 18 9 12 15 6"></polyline>',
-  'chevron-right': '<polyline points="9 18 15 12 9 6"></polyline>',
-  check: '<polyline points="20 6 9 17 4 12"></polyline>',
-  x: '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>',
-  plus: '<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>',
-  minus: '<line x1="5" y1="12" x2="19" y2="12"></line>',
-  search:
-    '<circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path>',
-  menu: '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>',
-  home: '<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline>',
-  user: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>',
-  settings:
-    '<circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 6v6m11-6h-6m-6 0H1m18.4-7.4l-4.2 4.2m-6.4 0l-4.2-4.2m0 14.8l4.2-4.2m6.4 0l4.2 4.2"></path>',
-  heart:
-    '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>',
-  star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
-});
+// The built-in set. Elements such as zeno-alert and zeno-input use these names.
+ZenoIcon.registerIcons(builtInIcons);
 
 declare global {
   interface HTMLElementTagNameMap {

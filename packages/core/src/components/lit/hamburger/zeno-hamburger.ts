@@ -306,7 +306,13 @@ export class ZenoHamburger extends ZenoElement {
     `,
   ];
 
+  /** True while the menu is open. The button reports it as `aria-expanded`. */
   @property({ type: Boolean, reflect: true }) active = false;
+  /**
+   * The name of the button. It stays the same when the menu opens: the open
+   * state is told by `aria-expanded`, not by a new name.
+   */
+  @property() label = 'Menu';
   @property({ reflect: true }) variant: HamburgerVariant = 'basic';
   @property({ reflect: true }) size: HamburgerSize = 'md';
   @property({ type: Boolean, reflect: true }) disabled = false;
@@ -354,10 +360,8 @@ export class ZenoHamburger extends ZenoElement {
         class=${classMap(classes)}
         part="base"
         type="button"
-        aria-label=${
-          this.ariaLabel || (this.active ? 'Close menu' : 'Open menu')
-        }
-        aria-pressed=${this.active ? 'true' : 'false'}
+        aria-label=${this.ariaLabel || this.label}
+        aria-expanded=${this.active ? 'true' : 'false'}
         ?disabled=${this.disabled}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}

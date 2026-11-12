@@ -1,6 +1,7 @@
 import { html, css, type PropertyValues } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { ZenoElement } from '../base/zeno-element.js';
+import { isPopoverOpen } from '../base/anchored-popover.js';
 import type { TooltipPlacement } from '../types.js';
 
 const GAP = 8;
@@ -178,7 +179,7 @@ export class ZenoTooltip extends ZenoElement {
   private conceal(): void {
     if (!this.isOpen) return;
     this.isOpen = false;
-    if (this.bubble?.matches(':popover-open')) this.bubble.hidePopover();
+    if (isPopoverOpen(this.bubble)) this.bubble.hidePopover();
     document.removeEventListener('keydown', this.handleKeyDown, true);
     window.removeEventListener('scroll', this.handleScroll, true);
     this.emitEvent('hide');

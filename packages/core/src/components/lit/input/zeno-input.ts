@@ -167,8 +167,8 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         padding: 0;
         border: none;
         background: none;
@@ -280,10 +280,11 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
         padding: 0;
         border: none;
+        border-radius: var(--zeno-radius-sm);
         background: none;
         color: var(--zeno-color-text-secondary);
         cursor: pointer;
@@ -293,6 +294,13 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
 
       .input__password-toggle:hover {
         color: var(--zeno-color-text-primary);
+      }
+
+      .field-help {
+        margin-top: var(--zeno-spacing-1-5);
+        color: var(--zeno-color-text-secondary);
+        font-size: var(--zeno-font-size-sm);
+        line-height: var(--zeno-font-line-height-snug);
       }
 
       /* High contrast mode */
@@ -344,6 +352,8 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
   @property({ type: Boolean, reflect: true }) success = false;
   @property({ type: Boolean, reflect: true, attribute: 'show-password-toggle' })
   showPasswordToggle = false;
+  /** Text under the field that helps to fill it in. */
+  @property({ attribute: 'help-text' }) helpText?: string;
 
   @state() private showPassword = false;
   @state() private hasStartIcon = false;
@@ -452,6 +462,14 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
     }
   }
 
+  /** The help text and the error message, when they show. */
+  private get descriptionIds(): string | undefined {
+    const ids = [this.helpText ? 'field-help' : '', this.describedBy ?? '']
+      .filter(Boolean)
+      .join(' ');
+    return ids || undefined;
+  }
+
   /**
    * Get actual input type
    */
@@ -522,7 +540,7 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
           ?readonly=${this.readonly}
           ?required=${this.required}
           aria-label=${ifDefined(this.accessibleLabel)}
-          aria-describedby=${ifDefined(this.describedBy)}
+          aria-describedby=${ifDefined(this.descriptionIds)}
           aria-invalid=${this.invalid ? 'true' : 'false'}
           @input=${this.handleInput}
           @change=${this.handleChange}
@@ -546,7 +564,6 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
                   type="button"
                   class="input__clear"
                   part="clear-button"
-                  tabindex="-1"
                   aria-label="Clear input"
                   @click=${this.handleClear}
                 >
@@ -562,7 +579,7 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
                   type="button"
                   class="input__password-toggle"
                   part="password-toggle"
-                  tabindex="-1"
+                  aria-controls="control"
                   aria-label=${
                     this.showPassword ? 'Hide password' : 'Show password'
                   }
@@ -587,6 +604,13 @@ export class ZenoInput extends FormFieldMixin(ZenoElement) {
           ></slot>
         </span>
       </div>
+      ${
+        this.helpText
+          ? html`<div class="field-help" id="field-help" part="help-text">
+              ${this.helpText}
+            </div>`
+          : nothing
+      }
       ${this.renderFieldError()}
     `;
   }

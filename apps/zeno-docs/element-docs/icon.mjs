@@ -5,22 +5,65 @@ export default {
     {
       title: 'Built-in names',
       description:
-        'These 15 names are built in. An icon without a `label` is decoration and is hidden from assistive technology.',
-      html: `<zeno-icon name="home"></zeno-icon>
-<zeno-icon name="search"></zeno-icon>
-<zeno-icon name="user"></zeno-icon>
-<zeno-icon name="settings"></zeno-icon>
-<zeno-icon name="heart"></zeno-icon>
-<zeno-icon name="star"></zeno-icon>
-<zeno-icon name="menu"></zeno-icon>
-<zeno-icon name="check"></zeno-icon>
-<zeno-icon name="x"></zeno-icon>
-<zeno-icon name="plus"></zeno-icon>
-<zeno-icon name="minus"></zeno-icon>
-<zeno-icon name="chevron-up"></zeno-icon>
-<zeno-icon name="chevron-down"></zeno-icon>
-<zeno-icon name="chevron-left"></zeno-icon>
-<zeno-icon name="chevron-right"></zeno-icon>`,
+        'These 50 names are built in, drawn from Feather (MIT). Each one here has a `label` with its name. An icon without a `label` is decoration and is hidden from assistive technology.',
+      html: `<zeno-icon name="arrow-left" label="arrow-left"></zeno-icon>
+<zeno-icon name="arrow-right" label="arrow-right"></zeno-icon>
+<zeno-icon name="chevron-down" label="chevron-down"></zeno-icon>
+<zeno-icon name="chevron-up" label="chevron-up"></zeno-icon>
+<zeno-icon name="chevron-left" label="chevron-left"></zeno-icon>
+<zeno-icon name="chevron-right" label="chevron-right"></zeno-icon>
+<zeno-icon name="chevrons-left" label="chevrons-left"></zeno-icon>
+<zeno-icon name="chevrons-right" label="chevrons-right"></zeno-icon>
+<zeno-icon name="check" label="check"></zeno-icon>
+<zeno-icon name="x" label="x"></zeno-icon>
+<zeno-icon name="plus" label="plus"></zeno-icon>
+<zeno-icon name="minus" label="minus"></zeno-icon>
+<zeno-icon name="search" label="search"></zeno-icon>
+<zeno-icon name="menu" label="menu"></zeno-icon>
+<zeno-icon name="more-horizontal" label="more-horizontal"></zeno-icon>
+<zeno-icon name="copy" label="copy"></zeno-icon>
+<zeno-icon name="download" label="download"></zeno-icon>
+<zeno-icon name="upload" label="upload"></zeno-icon>
+<zeno-icon name="upload-cloud" label="upload-cloud"></zeno-icon>
+<zeno-icon name="external-link" label="external-link"></zeno-icon>
+<zeno-icon name="link" label="link"></zeno-icon>
+<zeno-icon name="filter" label="filter"></zeno-icon>
+<zeno-icon name="refresh-cw" label="refresh-cw"></zeno-icon>
+<zeno-icon name="eye" label="eye"></zeno-icon>
+<zeno-icon name="eye-off" label="eye-off"></zeno-icon>
+<zeno-icon name="info" label="info"></zeno-icon>
+<zeno-icon name="help-circle" label="help-circle"></zeno-icon>
+<zeno-icon name="alert-circle" label="alert-circle"></zeno-icon>
+<zeno-icon name="alert-triangle" label="alert-triangle"></zeno-icon>
+<zeno-icon name="check-circle" label="check-circle"></zeno-icon>
+<zeno-icon name="x-circle" label="x-circle"></zeno-icon>
+<zeno-icon name="map" label="map"></zeno-icon>
+<zeno-icon name="map-pin" label="map-pin"></zeno-icon>
+<zeno-icon name="crosshair" label="crosshair"></zeno-icon>
+<zeno-icon name="navigation" label="navigation"></zeno-icon>
+<zeno-icon name="calendar" label="calendar"></zeno-icon>
+<zeno-icon name="clock" label="clock"></zeno-icon>
+<zeno-icon name="home" label="home"></zeno-icon>
+<zeno-icon name="user" label="user"></zeno-icon>
+<zeno-icon name="settings" label="settings"></zeno-icon>
+<zeno-icon name="mail" label="mail"></zeno-icon>
+<zeno-icon name="heart" label="heart"></zeno-icon>
+<zeno-icon name="star" label="star"></zeno-icon>
+<zeno-icon name="sun" label="sun"></zeno-icon>
+<zeno-icon name="moon" label="moon"></zeno-icon>
+<zeno-icon name="file" label="file"></zeno-icon>
+<zeno-icon name="file-text" label="file-text"></zeno-icon>
+<zeno-icon name="image" label="image"></zeno-icon>
+<zeno-icon name="music" label="music"></zeno-icon>
+<zeno-icon name="film" label="film"></zeno-icon>`,
+    },
+    {
+      title: 'Pixel sizes',
+      description:
+        'A number in `size` is a size in pixels, for an icon that should not grow with the text.',
+      html: `<zeno-icon name="map" size="16"></zeno-icon>
+<zeno-icon name="map" size="20"></zeno-icon>
+<zeno-icon name="map" size="24"></zeno-icon>`,
     },
     {
       title: 'Sizes',
@@ -76,8 +119,6 @@ export default {
   gaps: [
     // zeno-icon.ts:224-228: an unregistered name falls through to the empty slot; no console warning.
     'A `name` that is not registered shows nothing and gives no warning.',
-    // zeno-icon.ts:233-252: the element registers 15 names.
-    'Only 15 names are built in. Other elements ask for names that are missing, such as `eye` in `zeno-input` and `upload-cloud` in `zeno-file-upload`.',
     // zeno-icon.ts:69-73 sets stroke: none for fill; 239-244: x, plus, minus and menu are made of <line> only.
     '`variant="fill"` removes the stroke. Icons that are only lines (`x`, `plus`, `minus`, `menu`) disappear, and the chevrons and `check` become filled triangles.',
     // zeno-icon.ts:124-129, 212-222: src is drawn as a mask with a background colour; fill and stroke do not apply.

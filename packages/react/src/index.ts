@@ -14,16 +14,20 @@ import {
   ZenoCard as ZenoCardElement,
   ZenoCheckbox as ZenoCheckboxElement,
   ZenoChip as ZenoChipElement,
+  ZenoCodeSnippet as ZenoCodeSnippetElement,
   ZenoContainer as ZenoContainerElement,
   ZenoDataTable as ZenoDataTableElement,
   ZenoDatePicker as ZenoDatePickerElement,
+  ZenoDisclosure as ZenoDisclosureElement,
   ZenoDivider as ZenoDividerElement,
   ZenoDrawer as ZenoDrawerElement,
   ZenoFileUpload as ZenoFileUploadElement,
   ZenoGrid as ZenoGridElement,
   ZenoHamburger as ZenoHamburgerElement,
   ZenoIcon as ZenoIconElement,
+  ZenoInlineLoading as ZenoInlineLoadingElement,
   ZenoInput as ZenoInputElement,
+  ZenoLink as ZenoLinkElement,
   ZenoModal as ZenoModalElement,
   ZenoNavRail as ZenoNavRailElement,
   ZenoPagination as ZenoPaginationElement,
@@ -42,6 +46,7 @@ import {
   ZenoTextarea as ZenoTextareaElement,
   ZenoThemeToggle as ZenoThemeToggleElement,
   ZenoToast as ZenoToastElement,
+  ZenoToggletip as ZenoToggletipElement,
   ZenoTooltip as ZenoTooltipElement,
 } from '@usezeno/core/web-components';
 import type {
@@ -72,16 +77,20 @@ export type {
   ZenoCardElement,
   ZenoCheckboxElement,
   ZenoChipElement,
+  ZenoCodeSnippetElement,
   ZenoContainerElement,
   ZenoDataTableElement,
   ZenoDatePickerElement,
+  ZenoDisclosureElement,
   ZenoDividerElement,
   ZenoDrawerElement,
   ZenoFileUploadElement,
   ZenoGridElement,
   ZenoHamburgerElement,
   ZenoIconElement,
+  ZenoInlineLoadingElement,
   ZenoInputElement,
+  ZenoLinkElement,
   ZenoModalElement,
   ZenoNavRailElement,
   ZenoPaginationElement,
@@ -100,6 +109,7 @@ export type {
   ZenoTextareaElement,
   ZenoThemeToggleElement,
   ZenoToastElement,
+  ZenoToggletipElement,
   ZenoTooltipElement,
 };
 
@@ -307,6 +317,27 @@ export const ZenoChip = createComponent({
 });
 
 /**
+ * Code to read and copy: a command, a URL or a key. A button copies the text
+ * to the clipboard and says so.
+ */
+export const ZenoCodeSnippet = createComponent({
+  tagName: 'zeno-code-snippet',
+  elementClass: ZenoCodeSnippetElement,
+  react: React,
+  displayName: 'ZenoCodeSnippet',
+  events: {
+    /**
+     * The text was copied.
+     */
+    onCopied: 'copied' as EventName<CustomEvent<{ text: string }>>,
+    /**
+     * The clipboard refused the text.
+     */
+    onCopyFailed: 'copy-failed' as EventName<CustomEvent<{ error: unknown }>>,
+  },
+});
+
+/**
  * Centres content and keeps it within a maximum width.
  */
 export const ZenoContainer = createComponent({
@@ -384,6 +415,24 @@ export const ZenoDatePicker = createComponent({
      * The calendar closed.
      */
     onClose: 'close' as EventName<CustomEvent>,
+  },
+});
+
+/**
+ * One section that opens and closes, with any content inside. Built on a
+ * native `<details>` element. Put several next to each other for an
+ * accordion whose panels hold markup.
+ */
+export const ZenoDisclosure = createComponent({
+  tagName: 'zeno-disclosure',
+  elementClass: ZenoDisclosureElement,
+  react: React,
+  displayName: 'ZenoDisclosure',
+  events: {
+    /**
+     * The section opened or closed.
+     */
+    onToggle: 'toggle' as EventName<CustomEvent<{ open: boolean }>>,
   },
 });
 
@@ -514,6 +563,17 @@ export const ZenoIcon = createComponent({
 });
 
 /**
+ * A small line that says something is in progress, then that it finished or
+ * failed. Use it in place of a button while a form sends, for example.
+ */
+export const ZenoInlineLoading = createComponent({
+  tagName: 'zeno-inline-loading',
+  elementClass: ZenoInlineLoadingElement,
+  react: React,
+  displayName: 'ZenoInlineLoading',
+});
+
+/**
  * A single-line text field. It takes part in forms as a native input does.
  */
 export const ZenoInput = createComponent({
@@ -545,6 +605,18 @@ export const ZenoInput = createComponent({
       CustomEvent<{ visible: boolean }>
     >,
   },
+});
+
+/**
+ * A text link. With `href` it renders its own anchor. Without one it styles
+ * the anchor you put inside it, such as a router's link component, so
+ * client-side navigation keeps working.
+ */
+export const ZenoLink = createComponent({
+  tagName: 'zeno-link',
+  elementClass: ZenoLinkElement,
+  react: React,
+  displayName: 'ZenoLink',
 });
 
 /**
@@ -903,6 +975,27 @@ export const ZenoToast = createComponent({
     onHide: 'hide' as EventName<CustomEvent>,
     /**
      * The close button was pressed.
+     */
+    onClose: 'close' as EventName<CustomEvent>,
+  },
+});
+
+/**
+ * A small button that opens a note on click, tap, Enter or Space. Unlike a
+ * tooltip it works on touch screens and the note can hold links.
+ */
+export const ZenoToggletip = createComponent({
+  tagName: 'zeno-toggletip',
+  elementClass: ZenoToggletipElement,
+  react: React,
+  displayName: 'ZenoToggletip',
+  events: {
+    /**
+     * The note opened.
+     */
+    onOpen: 'open' as EventName<CustomEvent>,
+    /**
+     * The note closed.
      */
     onClose: 'close' as EventName<CustomEvent>,
   },

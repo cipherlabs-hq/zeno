@@ -76,7 +76,8 @@ form.addEventListener('submit', event => {
   accessibility: [
     'Renders a native `<input>` in its shadow root, so typing, selection and the on-screen keyboard for each `type` come from the browser.',
     'The `label` text is a real `<label>` for the input. Without `label`, the name comes from `aria-label` on the element or from an outside `<label for>`, and a click on that outside label focuses the input.',
-    'The input always carries `aria-invalid`. When an error shows, `aria-describedby` points at the error text.',
+    'The input always carries `aria-invalid`. `aria-describedby` points at the `help-text` and, when an error shows, at the error text.',
+    'The clear button and the password button are native buttons in the tab order, at least 24 by 24 pixels.',
     'Focus on the element goes to the inner input, and the required star is hidden from assistive technology.',
     'Enter is ignored while an input method editor is composing text.',
   ],
@@ -84,10 +85,6 @@ form.addEventListener('submit', event => {
   gaps: [
     // types.ts:92: InputVariant = 'outlined' | 'filled' | 'underlined'; zeno-input.ts:100-114 styles .input--outlined, .input--filled, .input--ghost.
     'The `variant` type lists `underlined`, but there is no style for it, so it looks like a plain bordered field. The stylesheet has a `ghost` variant that the type does not list.',
-    // zeno-input.ts:571-574 asks for 'eye' and 'eye-off'; zeno-icon.ts:233-252 does not register them.
-    'With `show-password-toggle` the button to show the password is empty. It uses the icon names `eye` and `eye-off`, which `zeno-icon` does not have.',
-    // zeno-input.ts:549 and 565: tabindex="-1" on both buttons; 443-453: the only key handled is Enter.
-    'The clear button and the password button cannot be reached with the keyboard, and no key clears the field or shows the password.',
     // zeno-input.ts:550, 566-568: fixed strings.
     'The names “Clear input”, “Show password” and “Hide password” are English only and have no property.',
     // zeno-input.ts:244-246 makes the text transparent; 534-541 adds a spinner; 505-531 sets no aria-busy and no readonly.
@@ -102,11 +99,7 @@ form.addEventListener('submit', event => {
     'The `end` slot is hidden while the clear button or the password button shows.',
     // mixins/form-field.ts:305-310: the error div has no role="alert" or aria-live.
     'The error text is not a live region. An error that appears while the user is elsewhere is not announced.',
-    // mixins/form-field.ts:286-288: describedBy is only the error id; the element has no help text property.
-    'There is no help text. `aria-describedby` can only point at the error.',
     // zeno-input.ts:117-123, 142-148: left, right, padding-left and padding-right.
     'The slots and their padding use left and right. In a right-to-left page the `start` slot stays on the left.',
-    // zeno-input.ts:553, 573: size="16"; zeno-icon.ts:33-51 styles xs to xl only.
-    'The element gives its icons the size `16`, which `zeno-icon` does not have, so they render at the default size.',
   ],
 };

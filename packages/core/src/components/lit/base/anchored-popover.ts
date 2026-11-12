@@ -21,6 +21,20 @@ export interface AnchoredPopoverOptions {
 
 const GAP = 4;
 
+/**
+ * True when the element is an open popover. A browser without the popover
+ * API (or a test DOM such as jsdom) does not know the `:popover-open`
+ * selector and throws on it, so that counts as not open.
+ */
+export function isPopoverOpen(element: Element | null | undefined): boolean {
+  if (!element) return false;
+  try {
+    return element.matches(':popover-open');
+  } catch {
+    return false;
+  }
+}
+
 export class AnchoredPopover {
   private shown = false;
 
@@ -48,7 +62,7 @@ export class AnchoredPopover {
     if (!this.shown) return;
     this.shown = false;
     const popover = this.options.popover();
-    if (popover?.matches(':popover-open')) popover.hidePopover();
+    if (isPopoverOpen(popover)) popover?.hidePopover();
     window.removeEventListener('scroll', this.position, true);
     window.removeEventListener('resize', this.position);
     document.removeEventListener('pointerdown', this.handlePress, true);

@@ -63,31 +63,17 @@ document.querySelector('zeno-button').addEventListener('click', () => alert.show
   ],
 
   accessibility: [
-    'The alert has `role="alert"` with `aria-live="polite"` and `aria-atomic="true"`.',
-    'The `title` text is rendered as an `<h3>`.',
-    'The close button is a native `<button>` with the label “Close alert”.',
+    'With `live="auto"`, the default, an `error` or `warning` alert is assertive (`role="alert"`) and an `info` or `success` alert is polite (`role="status"`). `live="off"` makes an alert that is on the page from the start a plain box.',
+    'The `heading` text is a heading at `heading-level`, 3 by default. Prefer `heading` to `title`, which browsers also show as a tooltip.',
+    'The close button is a native `<button>` named by `close-label`, “Close alert” by default.',
     'The icon is decoration and hidden from assistive technology, so the variant is not announced. Say what happened in the text.',
     'The `animate-in` and `animate-out` animations are turned off when the user asks for reduced motion.',
   ],
 
   gaps: [
-    // zeno-alert.ts:339-351 against icon/zeno-icon.ts:233-250: info, check-circle, alert-triangle and x-circle are not registered.
-    'The default icon of every variant is missing. The alert asks for `info`, `check-circle`, `alert-triangle` and `x-circle`, and `zeno-icon` does not register these names. The icon space stays empty until you register them or set `icon` to a registered name.',
-    // zeno-alert.ts:374-375: role="alert" and aria-live="polite" on the same node.
-    '`role="alert"` stands for an assertive live region, and `aria-live="polite"` on the same element says the opposite. There is no attribute to choose one or the other.',
-    // zeno-alert.ts:374: the role is always set.
-    'Every alert is a live region, also one that is on the page from the start and only gives static information.',
-    // zeno-alert.ts:292: the property is named `title`, which is also the global HTML attribute.
-    'The heading text uses the `title` attribute, which is also the native tooltip. Hovering the alert shows the same text again as a tooltip.',
-    // zeno-alert.ts:388: fixed <h3>.
-    'The title is always an `<h3>`. The level cannot be changed to fit the page outline.',
-    // zeno-alert.ts:409: literal 'Close alert'.
-    'The close button label “Close alert” is English and cannot be changed.',
     // zeno-alert.ts:322-325: setTimeout of 300 ms, not an animationend listener.
     '`hide()` always waits 300 ms before it removes the content, also without `animate-out` and with reduced motion.',
     // zeno-alert.ts:331-334, 357: the close button is removed with the rest and nothing calls focus().
     'When the close button is used, it disappears with the alert and focus is not moved anywhere.',
-    // zeno-alert.ts:160-165, 399: the slot itself carries the margin and is always rendered.
-    'The `actions` slot always adds its top margin, so an alert without actions has extra space under the text.',
   ],
 };

@@ -259,7 +259,6 @@ export class ZenoSpinner extends ZenoElement {
         class=${classMap(classes)}
         role="status"
         aria-live="polite"
-        aria-busy="true"
       >
         ${this.renderVariant()}
         <span class="spinner__label">${this.label}</span>

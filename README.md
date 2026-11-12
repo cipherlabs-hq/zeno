@@ -25,7 +25,7 @@ what changed.
 | Package                | Contents                                                                                                                    |
 | ---------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | `@usezeno/tokens`      | Design tokens: CSS custom properties and a JS export                                                                        |
-| `@usezeno/core`        | The 39 Lit elements (`zeno-button`, `zeno-input`, …)                                                                        |
+| `@usezeno/core`        | The 44 Lit elements (`zeno-button`, `zeno-input`, …)                                                                        |
 | `@usezeno/react`       | React components that wrap the elements, with typed props and events                                                        |
 | `@usezeno/vue`         | For Vue 3: compiler helper, template types and `v-model` helper for the elements. Also the older Vue components (see below) |
 | `@usezeno/svelte`      | For Svelte 5: registers the elements and types them in markup                                                               |

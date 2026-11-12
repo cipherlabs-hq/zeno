@@ -90,16 +90,6 @@ form.addEventListener('submit', event => {
   ],
 
   gaps: [
-    // zeno-slider.ts:77: .slider__track has overflow: hidden. 446-469: the
-    // thumb and the tooltip are children of the track. Checked in Chromium
-    // with the built bundle: no thumb circle and no tooltip are painted.
-    'The thumb and the `show-tooltip` bubble are inside the track, and the track has `overflow: hidden`. They are cut off at the edge of the track, so the round thumb and the tooltip do not show.',
-    // zeno-slider.ts:127-128: the focus ring is a box-shadow on the thumb,
-    // which the track clips (77). 57-64: the native input has opacity 0.
-    'Keyboard focus has no visible indicator. The focus ring is a shadow on the thumb, which the track cuts off, and the native input is transparent.',
-    // zeno-slider.ts:164-178: .slider__marks has no height and each
-    // .slider__mark is position: absolute.
-    'The row of marks has no height, because every mark is positioned absolutely. Mark labels overlap the content that follows the slider.',
     // form-field.ts:138 declares readonly. zeno-slider.ts:424-444: the input
     // gets disabled and required, never readonly, and handleInput (335-340)
     // does not check it.
