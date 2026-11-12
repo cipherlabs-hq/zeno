@@ -1,6 +1,6 @@
 {
   "name": "@usezeno/core",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Zeno web components, built with Lit",
   "license": "MIT",
   "homepage": "https://zeno.thecipherlabs.com",
