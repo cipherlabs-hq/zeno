@@ -1,6 +1,8 @@
 import { html, css, type PropertyValues } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../icon/zeno-icon.js';
 import { AnchoredPopover } from '../base/anchored-popover.js';
 
 /**

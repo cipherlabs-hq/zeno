@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { userEvent } from 'vitest/browser';
 import type { ZenoLink } from '../../src/components/lit/link/zeno-link.js';
 import { expectAccessible, mount } from './helpers.js';
 
@@ -53,7 +54,10 @@ describe('zeno-link', () => {
       `<zeno-link href="/about" standalone>About</zeno-link>`
     );
     const a = anchor(main.querySelector('zeno-link')!)!;
+    expect(a.matches(':hover')).toBe(false);
     expect(getComputedStyle(a).textDecorationLine).toBe('none');
+    await userEvent.hover(a);
+    expect(getComputedStyle(a).textDecorationLine).toBe('underline');
   });
 
   it('has no axe violations', async () => {

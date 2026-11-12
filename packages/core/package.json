@@ -22,7 +22,8 @@
   "type": "module",
   "sideEffects": [
     "./dist/web-components.js",
-    "./dist/components/**/*.js"
+    "./dist/components/**/*.js",
+    "./dist/elements/*.js"
   ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -37,7 +38,11 @@
       "default": "./dist/web-components.js"
     },
     "./custom-elements.json": "./dist/custom-elements.json",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./*": {
+      "types": "./dist/elements/*.d.ts",
+      "default": "./dist/elements/*.js"
+    }
   },
   "files": [
     "dist"

@@ -1,6 +1,8 @@
 import { html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../icon/zeno-icon.js';
 
 /**
  * A small line that says something is in progress, then that it finished or

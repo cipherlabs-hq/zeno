@@ -27,6 +27,10 @@ export function SignUp() {
 }
 ```
 
+- Import from `@usezeno/react` or one element at a time from
+  `@usezeno/react/<element>` (`@usezeno/react/date-picker`). Either way a
+  bundler keeps only the elements you use: each component loads its element
+  from `@usezeno/core/<element>`, and the package is free of side effects.
 - A component is named after its element: `zeno-date-picker` is
   `ZenoDatePicker`.
 - Props are the element's properties, so arrays and objects pass through as

@@ -1,5 +1,6 @@
 import axe from 'axe-core';
 import { afterEach, expect } from 'vitest';
+import { userEvent } from 'vitest/browser';
 
 interface Updatable {
   updateComplete?: Promise<unknown>;
@@ -7,10 +8,29 @@ interface Updatable {
 
 const mounted: HTMLElement[] = [];
 
-afterEach(() => {
+afterEach(async () => {
   for (const node of mounted.splice(0)) node.remove();
   document.documentElement.removeAttribute('data-theme');
+  await parkPointer();
 });
+
+/**
+ * Moves the pointer to the bottom-right corner of the viewport. The browser
+ * keeps the pointer where the last test left it, and the next test's
+ * fixture is mounted at the same place: without this, an element can start
+ * a test in its :hover state, depending on which test file ran before.
+ */
+async function parkPointer(): Promise<void> {
+  const corner = document.createElement('div');
+  corner.style.cssText =
+    'position: fixed; right: 0; bottom: 0; width: 2px; height: 2px; z-index: 2147483647';
+  document.body.append(corner);
+  try {
+    await userEvent.hover(corner);
+  } finally {
+    corner.remove();
+  }
+}
 
 export function nextFrame(): Promise<void> {
   return new Promise(resolve => requestAnimationFrame(() => resolve()));

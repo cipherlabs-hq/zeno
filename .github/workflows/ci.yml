@@ -39,6 +39,7 @@ jobs:
       - run: pnpm build
       # Fails when the generated React, Vue or Svelte bindings are out of date.
       - run: pnpm generate:check
+      - run: pnpm check:entry-points
       - run: pnpm typecheck
       - run: pnpm test
       # Fails when a package tarball carries tests, stories, secrets or a broken export.

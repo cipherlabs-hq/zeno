@@ -8,6 +8,9 @@ import {
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../badge/zeno-badge.js';
+import '../icon/zeno-icon.js';
 import type { TabsVariant, TabsSize, TabItem } from '../types.js';
 
 /**
