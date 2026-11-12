@@ -1,0 +1,173 @@
+---
+title: Frameworks
+description: Zeno in plain HTML, React, Vue and Svelte, with the same sign-up form in each.
+slug: /frameworks
+---
+
+import { SourceFile } from '@site/src/components/SourceFile';
+
+# Frameworks
+
+There is one implementation of each element. This page says how each
+framework reaches it, what works, and what does not. Every statement marked
+"tested" is covered by the example app for that framework in the `examples`
+folder.
+
+## The same form, four times
+
+Each example app builds the same sign-up form: a text field, a select, a
+checkbox, three buttons and a modal. One shared set of eight checks runs
+against all four in headless Chromium: properties reach the element, typing
+updates the app's state, the app's state updates the element, the modal opens
+and closes, the form submits the right values, and a required field blocks an
+empty submit.
+
+The source shown under each heading below is read from the repository when
+this site is built. All four use this list of plans:
+
+<SourceFile path="examples/shared/plans.ts" />
+
+## Plain HTML
+
+Load the tokens and the elements, then write the tags. See
+[Using the elements](./using-the-elements.md). Arrays and objects are set as
+properties from script.
+
+The sign-up form:
+
+<SourceFile path="examples/html/index.html" />
+
+<SourceFile path="examples/html/src/app.ts" />
+
+<SourceFile path="examples/html/src/main.ts" />
+
+## React
+
+Use `@usezeno/react`. It has one component per element, generated from the
+elements with `@lit/react`. React 18 and 19 are supported.
+
+```tsx
+import { ZenoInput } from '@usezeno/react';
+
+<ZenoInput
+  label="Email"
+  value={email}
+  onInput={event => setEmail(String(event.detail.value))}
+/>;
+```
+
+Tested with React 19:
+
+- Props are set as properties, so arrays and objects pass through.
+- Events are props: `onInput`, `onChange`, `onOpen`, `onRequestClose`. The
+  handler's `event.detail` is typed.
+- A controlled `value` or `checked` stays in step with state in both
+  directions.
+- A wrong prop value or `detail` field is a type error.
+
+To know:
+
+- `onChange` fires when a change is committed, as on the element. React's own
+  `onChange` on `<input>` fires on every keystroke. Use `onInput` for that.
+- React 19 can also render the tags directly, without this package. You then
+  have no prop or event types.
+
+The sign-up form:
+
+<SourceFile path="examples/react/src/App.tsx" />
+
+## Vue
+
+Use the elements directly. `@usezeno/vue/elements` has the three things Vue
+needs.
+
+```ts
+// vite.config.ts
+import vue from '@vitejs/plugin-vue';
+import { zenoCompilerOptions } from '@usezeno/vue/elements';
+
+export default {
+  plugins: [vue({ template: { compilerOptions: zenoCompilerOptions } })],
+};
+```
+
+```vue
+<zeno-input v-model="email" label="Email" />
+<zeno-select v-model="plan" :options="plans" label="Plan" />
+<zeno-checkbox v-bind="useCheckedModel(updates)" label="Send me updates" />
+```
+
+Tested with Vue 3.5:
+
+- `v-model` works on `zeno-input` and `zeno-select`. It uses the `value`
+  property and the `input` event, which `zeno-textarea`, `zeno-slider`,
+  `zeno-radio-group` and `zeno-date-picker` have as well.
+- `useCheckedModel(ref)` binds `checked` on `zeno-checkbox`, `zeno-switch` and
+  `zeno-radio`. Plain `v-model` also binds `checked` when the tag has
+  `type="checkbox"` written on it.
+- `:options="plans"` sets the property.
+- `@open`, `@close` and other events work.
+- `vue-tsc` checks props and event handlers on `zeno-` tags.
+
+To know (from Vue's source and `vue-tsc` runs, not from tests):
+
+- Import the elements before the component renders. Before an element is
+  registered Vue sets attributes, and an array becomes text.
+- Write a bound boolean in camelCase: `:hideRequiredIndicator="false"`. The
+  kebab-case form sets the attribute text `"false"`, which the element reads
+  as true.
+- `vue-tsc` does not check `v-model` on a custom element and does not flag an
+  unknown prop.
+
+`@usezeno/vue` also still exports Vue components from 2025 (`ZButton`,
+`ZInput`, …). They are a second implementation and are being retired. Use the
+elements for new work.
+
+The sign-up form:
+
+<SourceFile path="examples/vue/src/App.vue" />
+
+## Svelte
+
+Use `@usezeno/svelte`. Importing it registers the elements and types them for
+`svelte-check`.
+
+```svelte
+<zeno-input
+  label="Email"
+  value={email}
+  oninput={event => (email = String(event.detail.value))}
+></zeno-input>
+```
+
+Tested with Svelte 5:
+
+- Properties are set as properties, so arrays and objects pass through.
+- Events work as `on` plus the event name, including `onrequest-close`, and
+  `event.preventDefault()` on it keeps a modal open.
+- `bind:this` gives you the element, to call `show()` and `close()`.
+- A wrong property value or `detail` field is an error in `svelte-check`.
+
+What does not work:
+
+- `bind:value` and `bind:checked`. Svelte's compiler rejects them on a custom
+  element (error `bind_invalid_target`). Two-way binding is the property plus
+  the event, as in the example above. This is tested too.
+- Svelte's accessibility hints warn about `onclick` on `zeno-button`, because
+  Svelte cannot know it is a button. The example's `svelte.config.js` filters
+  those two warnings for `zeno-` tags.
+
+To know (from Svelte's source, not from a test): import `@usezeno/svelte`
+before the component renders. Before an element is registered Svelte sets
+strings, numbers and booleans as attributes, and `false` becomes the text
+`"false"`, which the element reads as true.
+
+The sign-up form:
+
+<SourceFile path="examples/svelte/src/App.svelte" />
+
+## Server rendering
+
+Not covered yet. The elements render in the browser. On a server-rendered
+page they appear once their script has loaded. Nothing in Zeno has been tested
+with Next.js, Nuxt or SvelteKit server rendering.

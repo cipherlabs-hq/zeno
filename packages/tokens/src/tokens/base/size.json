@@ -1,0 +1,75 @@
+{
+  "size": {
+    "control": {
+      "$type": "dimension",
+      "$description": "Heights of buttons, fields and other controls.",
+      "xs": {
+        "$value": "20px"
+      },
+      "sm": {
+        "$value": "24px"
+      },
+      "md": {
+        "$value": "32px"
+      },
+      "lg": {
+        "$value": "40px"
+      },
+      "xl": {
+        "$value": "48px"
+      },
+      "2xl": {
+        "$value": "56px"
+      }
+    },
+    "icon": {
+      "$type": "dimension",
+      "xs": {
+        "$value": "12px"
+      },
+      "sm": {
+        "$value": "16px"
+      },
+      "md": {
+        "$value": "20px"
+      },
+      "lg": {
+        "$value": "24px"
+      },
+      "xl": {
+        "$value": "32px"
+      },
+      "2xl": {
+        "$value": "48px"
+      }
+    },
+    "avatar": {
+      "$type": "dimension",
+      "xs": {
+        "$value": "24px"
+      },
+      "sm": {
+        "$value": "32px"
+      },
+      "md": {
+        "$value": "40px"
+      },
+      "lg": {
+        "$value": "48px"
+      },
+      "xl": {
+        "$value": "64px"
+      },
+      "2xl": {
+        "$value": "96px"
+      }
+    },
+    "target": {
+      "$type": "dimension",
+      "$description": "The smallest pointer target, per WCAG 2.2 success criterion 2.5.8.",
+      "min": {
+        "$value": "24px"
+      }
+    }
+  }
+}

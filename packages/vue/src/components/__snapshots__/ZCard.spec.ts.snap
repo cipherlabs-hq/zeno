@@ -1,0 +1,82 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ZCard > matches snapshot when outlined 1`] = `
+"<div data-v-d205e526="" class="z-card z-card--default z-card--default z-card--outlined" style="box-shadow: none; transform: translateY(0px);" data-elevation="1">
+  <!-- Loading overlay -->
+  <transition-stub data-v-d205e526="" name="card-fade" appear="false" persisted="false" css="true">
+    <!--v-if-->
+  </transition-stub><!-- Cover image -->
+  <!--v-if-->
+  <!-- Header with optional image/icon -->
+  <!--v-if-->
+  <!-- Main content -->
+  <main data-v-d205e526="" class="z-card__content">
+    <transition-stub data-v-d205e526="" name="card-content" mode="out-in" appear="false" persisted="false" css="true">
+      <div data-v-d205e526="">
+        <div>Outlined card content</div>
+      </div>
+    </transition-stub>
+  </main><!-- Actions footer -->
+  <!--v-if-->
+  <!-- Selection indicator -->
+  <transition-stub data-v-d205e526="" name="card-check" appear="false" persisted="false" css="true">
+    <!--v-if-->
+  </transition-stub>
+</div>"
+`;
+
+exports[`ZCard > matches snapshot with all slots 1`] = `
+"<div data-v-d205e526="" class="z-card z-card--default z-card--default z-card--interactive" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; transform: translateY(0px);" data-elevation="2">
+  <!-- Loading overlay -->
+  <transition-stub data-v-d205e526="" name="card-fade" appear="false" persisted="false" css="true">
+    <!--v-if-->
+  </transition-stub><!-- Cover image -->
+  <!--v-if-->
+  <!-- Header with optional image/icon -->
+  <header data-v-d205e526="" class="z-card__header">
+    <!--v-if-->
+    <div data-v-d205e526="" class="z-card__header-content">
+      <h3>Card Header</h3>
+    </div>
+    <!--v-if-->
+  </header><!-- Main content -->
+  <main data-v-d205e526="" class="z-card__content">
+    <transition-stub data-v-d205e526="" name="card-content" mode="out-in" appear="false" persisted="false" css="true">
+      <div data-v-d205e526="">
+        <div>Card main content</div>
+      </div>
+    </transition-stub>
+  </main><!-- Actions footer -->
+  <footer data-v-d205e526="" class="z-card__footer">
+    <div>Card footer</div>
+  </footer><!-- Selection indicator -->
+  <transition-stub data-v-d205e526="" name="card-check" appear="false" persisted="false" css="true">
+    <!--v-if-->
+  </transition-stub>
+</div>"
+`;
+
+exports[`ZCard > matches snapshot with default props 1`] = `
+"<div data-v-d205e526="" class="z-card z-card--default z-card--default z-card--interactive" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px; transform: translateY(0px);" data-elevation="1">
+  <!-- Loading overlay -->
+  <transition-stub data-v-d205e526="" name="card-fade" appear="false" persisted="false" css="true">
+    <!--v-if-->
+  </transition-stub><!-- Cover image -->
+  <!--v-if-->
+  <!-- Header with optional image/icon -->
+  <!--v-if-->
+  <!-- Main content -->
+  <main data-v-d205e526="" class="z-card__content">
+    <transition-stub data-v-d205e526="" name="card-content" mode="out-in" appear="false" persisted="false" css="true">
+      <div data-v-d205e526="">
+        <div>Default card content</div>
+      </div>
+    </transition-stub>
+  </main><!-- Actions footer -->
+  <!--v-if-->
+  <!-- Selection indicator -->
+  <transition-stub data-v-d205e526="" name="card-check" appear="false" persisted="false" css="true">
+    <!--v-if-->
+  </transition-stub>
+</div>"
+`;

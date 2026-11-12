@@ -1,0 +1,89 @@
+---
+title: Versioning and support
+description: What a Zeno version number promises, which browsers are supported, and how to report a bug or a security issue.
+slug: /versioning
+---
+
+import { ReleaseStatus } from '@site/src/components/ReleaseStatus';
+
+# Versioning and support
+
+<ReleaseStatus />
+
+## Version numbers
+
+Zeno follows [semantic versioning](https://semver.org). Every `@usezeno/*`
+package is released together and shares one version number. Install the same
+version of each package you use.
+
+Before 1.0:
+
+- A **minor** release (0.1 to 0.2) can change or remove names and behaviour.
+  Each such change is listed under "Breaking changes" on the
+  [Releases](/releases) page.
+- A **patch** release (0.1.0 to 0.1.1) only fixes bugs.
+
+npm treats `^0.1.0` as "0.1.x only", so the range npm writes when you install
+keeps you on patch releases. Move to the next minor when you have read what
+changed.
+
+From 1.0 on, a breaking change needs a new major version.
+
+## What a version covers
+
+The public API is what the [element pages](/elements) and the
+[token tables](/tokens) list: tag names, attributes, properties, methods,
+events, slots, CSS parts, the names of the `--zeno-*` custom properties, and
+the import paths of each package.
+
+Not covered: the markup inside an element's shadow tree, class names inside
+it, and the exact value of a token. A colour or a space can be adjusted in any
+release.
+
+## Which versions get fixes
+
+Only the latest release. Fixes are not carried back to older versions.
+
+## Browsers
+
+The elements need these browser features: custom elements with form
+association (`ElementInternals`), the `<dialog>` element, the `popover`
+attribute, `color-mix()`, `:focus-visible` and `inert`. The first versions
+that have all of them are:
+
+| Browser         | From version |
+| --------------- | ------------ |
+| Chrome and Edge | 114          |
+| Firefox         | 125          |
+| Safari          | 17           |
+
+The automated tests run in headless Chromium only. Firefox and Safari are not
+tested yet, so the two rows for them say what the browsers support, not what
+has been checked.
+
+## Frameworks
+
+| Package           | Works with                       |
+| ----------------- | -------------------------------- |
+| `@usezeno/react`  | React 18 and 19. Tested with 19. |
+| `@usezeno/vue`    | Vue 3.5 and newer                |
+| `@usezeno/svelte` | Svelte 5                         |
+
+Server rendering is not covered. See [Frameworks](./frameworks.mdx).
+
+The packages are ES modules. There is no CommonJS build. Building the
+repository needs Node.js 22.12 or newer.
+
+## Report a bug
+
+Open an issue at
+[github.com/cipherlabs-hq/zeno/issues](https://github.com/cipherlabs-hq/zeno/issues).
+Say which element and which browser, and include the smallest markup that
+shows the problem. Check the "Tests and known gaps" section of the element's
+page first: the problem may already be listed there.
+
+## Report a security issue
+
+Do not open a public issue. Report it privately through
+[GitHub's private vulnerability reporting](https://github.com/cipherlabs-hq/zeno/security/advisories/new).
+The repository's `SECURITY.md` has the same instructions.

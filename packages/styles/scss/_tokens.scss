@@ -1,0 +1,6 @@
+// Sass variables for the Vue single-file components.
+//
+// The variables are generated from @usezeno/tokens by build.mjs and keep the
+// names the components were written against. New code should read the
+// --zeno-* custom properties from @usezeno/tokens/css instead.
+@forward '../dist/scss/_zeno-tokens';

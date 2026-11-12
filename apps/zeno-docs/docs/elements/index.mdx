@@ -1,0 +1,27 @@
+---
+title: Elements
+description: Every Zeno element, with a page of live examples and its full API.
+slug: /elements
+---
+
+import { ElementIndex, ElementStatus } from '@site/src/components/ElementIndex';
+
+# Elements
+
+Each page below is written from the element's source when this site is built:
+the attributes, properties, events, slots and parts come from the
+custom-elements manifest, and the examples are rendered by the real element.
+For what all of them share, read
+[Using the elements](../using-the-elements.md).
+
+<ElementIndex />
+
+## Status of each element
+
+This table is built from the test files and the notes for each element. "Its
+own" means the element has a test file that clicks, types and submits in a
+real browser. "Renders only" means the one check is that the element registers
+and draws. "No description" counts the properties, methods, events, slots and
+parts that have no description in the source yet.
+
+<ElementStatus />

@@ -1,0 +1,10 @@
+{
+  // For the editor and `pnpm typecheck`. Docusaurus compiles this app itself
+  // and does not check types.
+  "extends": "@docusaurus/tsconfig",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "ignoreDeprecations": "6.0"
+  },
+  "exclude": [".docusaurus", "build"]
+}

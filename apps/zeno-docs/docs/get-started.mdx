@@ -1,0 +1,102 @@
+---
+title: Get started
+description: Install Zeno, render a first element and choose a theme.
+slug: /get-started
+---
+
+import { Live } from '@site/src/components/element';
+import { ReleaseStatus } from '@site/src/components/ReleaseStatus';
+
+# Get started
+
+Zeno is two packages to begin with: the design tokens and the elements.
+
+<ReleaseStatus />
+
+## Install
+
+```bash
+npm install @usezeno/tokens @usezeno/core
+```
+
+Both packages are ES modules. `@usezeno/core` imports [Lit](https://lit.dev)
+by name, so you need a bundler such as Vite, or an import map. There is no
+single-file build to load from a `<script>` tag yet.
+
+## Load the tokens and the elements
+
+Do this once, where your app starts:
+
+```js
+import '@usezeno/tokens/css';
+import '@usezeno/core/web-components';
+```
+
+The first line loads the design tokens as CSS custom properties. The elements
+read them and carry no fallback values, so an element on a page without the
+stylesheet has no colours or spacing. The second line registers every element.
+There is one entry point for all of them, so an app that uses two elements
+still loads them all.
+
+## Your first element
+
+Write the tag. It works in an HTML file, a template, or JSX.
+
+<Live
+  html={`<zeno-button variant="primary">Save</zeno-button>
+<zeno-button variant="secondary">Cancel</zeno-button>`}
+/>
+
+Form controls take a `label` and behave like native controls inside a
+`<form>`:
+
+<Live html={`<zeno-input label="Email" type="email" required></zeno-input>`} />
+
+Each element has a page with live examples and its full API. Start from the
+[list of elements](/elements), or read
+[Using the elements](./using-the-elements.md) for how attributes, properties,
+events and forms work across all of them.
+
+## Light and dark
+
+Light is the default. The stylesheet switches to dark when the operating
+system asks for dark. To choose yourself, set `data-theme` on `<html>`:
+
+```html
+<html data-theme="dark"></html>
+```
+
+`data-theme` also works on any element, and themes everything inside it. This
+block is dark whatever the theme of this page is:
+
+<Live
+  html={`<section data-theme="dark" style="background: var(--zeno-color-background-page); padding: var(--zeno-spacing-4); border-radius: var(--zeno-radius-lg);">
+  <zeno-button variant="primary">Dark, on any page</zeno-button>
+  <zeno-badge variant="success">Saved</zeno-badge>
+</section>`}
+/>
+
+`@usezeno/core` exports helpers that set the attribute for you:
+
+```js
+import { getTheme, setTheme } from '@usezeno/core';
+
+setTheme('dark'); // sets data-theme="dark" on <html>
+setTheme('system'); // removes the attribute and follows the operating system
+getTheme(); // 'light' or 'dark'
+```
+
+Zeno does not remember the choice. Store it yourself if it should survive a
+reload. See [Tokens and theming](./tokens.mdx) for every token and how to
+change the accent colour.
+
+## Fonts
+
+The font tokens name IBM Plex Sans and IBM Plex Mono first, followed by system
+fonts. Zeno ships no font files. Load IBM Plex yourself if you want it. If you
+do not, the system fonts apply. This site does not load it.
+
+## With a framework
+
+The elements work as they are in React 19, Vue and Svelte. There are also thin
+packages that add types and a few helpers. See [Frameworks](./frameworks.mdx).

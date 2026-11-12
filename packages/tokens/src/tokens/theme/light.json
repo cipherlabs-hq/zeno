@@ -1,0 +1,311 @@
+{
+  "color": {
+    "$type": "color",
+    "background": {
+      "page": {
+        "$value": "{palette.gray.50}",
+        "$description": "The application canvas."
+      },
+      "surface": {
+        "$value": "{palette.gray.0}",
+        "$description": "Cards, fields, menus and dialogs."
+      },
+      "subtle": {
+        "$value": "{palette.gray.100}",
+        "$description": "A quiet fill: table headers, wells, secondary panels."
+      },
+      "muted": {
+        "$value": "{palette.gray.200}",
+        "$description": "A stronger quiet fill: tracks, skeletons."
+      },
+      "hover": {
+        "$value": "rgba(16, 18, 21, 0.06)",
+        "$description": "Layered over any background when a neutral item is hovered."
+      },
+      "active": {
+        "$value": "rgba(16, 18, 21, 0.1)",
+        "$description": "Layered over any background while a neutral item is pressed."
+      },
+      "selected": {
+        "$value": "{palette.blue.50}",
+        "$description": "A selected row, option or tab."
+      },
+      "disabled": {
+        "$value": "{palette.gray.100}",
+        "$description": "Fill of a disabled control."
+      },
+      "inverse": {
+        "$value": "{palette.gray.900}",
+        "$description": "Tooltips and other inverted surfaces."
+      },
+      "scrim": {
+        "$value": "rgba(16, 18, 21, 0.5)",
+        "$description": "The backdrop behind a modal dialog or drawer."
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "{palette.gray.950}"
+      },
+      "secondary": {
+        "$value": "{palette.gray.700}"
+      },
+      "tertiary": {
+        "$value": "{palette.gray.600}",
+        "$description": "Captions and hints. Passes 4.5:1 on page, surface and subtle; do not use on muted."
+      },
+      "placeholder": {
+        "$value": "{palette.gray.600}"
+      },
+      "disabled": {
+        "$value": "{palette.gray.400}",
+        "$description": "Disabled text is exempt from WCAG contrast minimums."
+      },
+      "inverse": {
+        "$value": "{palette.gray.50}",
+        "$description": "Text on the inverse background."
+      },
+      "invalid": {
+        "$value": "{palette.red.700}"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{palette.gray.200}",
+        "$description": "Decorative dividers."
+      },
+      "default": {
+        "$value": "{palette.gray.300}",
+        "$description": "Decorative borders of cards and panels."
+      },
+      "strong": {
+        "$value": "{palette.gray.400}",
+        "$description": "Emphasised decorative borders."
+      },
+      "control": {
+        "$value": "{palette.gray.500}",
+        "$description": "The boundary of a form control. Passes 3:1 on page, surface and subtle."
+      },
+      "controlHover": {
+        "$value": "{palette.gray.600}"
+      },
+      "disabled": {
+        "$value": "{palette.gray.300}"
+      },
+      "invalid": {
+        "$value": "{palette.red.600}"
+      }
+    },
+    "focus": {
+      "ring": {
+        "$value": "{palette.blue.600}",
+        "$description": "The focus indicator. Passes 3:1 on every background token."
+      }
+    },
+    "link": {
+      "default": {
+        "$value": "{palette.blue.700}"
+      },
+      "hover": {
+        "$value": "{palette.blue.800}"
+      },
+      "active": {
+        "$value": "{palette.blue.900}"
+      },
+      "visited": {
+        "$value": "{palette.violet.700}"
+      }
+    },
+    "selection": {
+      "background": {
+        "$value": "{palette.blue.200}"
+      },
+      "text": {
+        "$value": "{palette.gray.950}"
+      }
+    },
+    "accent": {
+      "solid": {
+        "$value": "{palette.blue.600}"
+      },
+      "solidHover": {
+        "$value": "{palette.blue.700}"
+      },
+      "solidActive": {
+        "$value": "{palette.blue.800}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.0}"
+      },
+      "subtle": {
+        "$value": "{palette.blue.50}"
+      },
+      "subtleHover": {
+        "$value": "{palette.blue.100}"
+      },
+      "border": {
+        "$value": "{palette.blue.500}"
+      },
+      "text": {
+        "$value": "{palette.blue.700}"
+      }
+    },
+    "neutral": {
+      "solid": {
+        "$value": "{palette.gray.800}"
+      },
+      "solidHover": {
+        "$value": "{palette.gray.700}"
+      },
+      "solidActive": {
+        "$value": "{palette.gray.950}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.0}"
+      },
+      "subtle": {
+        "$value": "{palette.gray.100}"
+      },
+      "subtleHover": {
+        "$value": "{palette.gray.200}"
+      },
+      "border": {
+        "$value": "{palette.gray.500}"
+      },
+      "text": {
+        "$value": "{palette.gray.700}"
+      }
+    },
+    "success": {
+      "solid": {
+        "$value": "{palette.green.600}"
+      },
+      "solidHover": {
+        "$value": "{palette.green.700}"
+      },
+      "solidActive": {
+        "$value": "{palette.green.800}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.0}"
+      },
+      "subtle": {
+        "$value": "{palette.green.50}"
+      },
+      "subtleHover": {
+        "$value": "{palette.green.100}"
+      },
+      "border": {
+        "$value": "{palette.green.500}"
+      },
+      "text": {
+        "$value": "{palette.green.700}"
+      }
+    },
+    "warning": {
+      "solid": {
+        "$value": "{palette.amber.600}"
+      },
+      "solidHover": {
+        "$value": "{palette.amber.700}"
+      },
+      "solidActive": {
+        "$value": "{palette.amber.800}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.0}"
+      },
+      "subtle": {
+        "$value": "{palette.amber.50}"
+      },
+      "subtleHover": {
+        "$value": "{palette.amber.100}"
+      },
+      "border": {
+        "$value": "{palette.amber.500}"
+      },
+      "text": {
+        "$value": "{palette.amber.700}"
+      }
+    },
+    "danger": {
+      "solid": {
+        "$value": "{palette.red.600}"
+      },
+      "solidHover": {
+        "$value": "{palette.red.700}"
+      },
+      "solidActive": {
+        "$value": "{palette.red.800}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.0}"
+      },
+      "subtle": {
+        "$value": "{palette.red.50}"
+      },
+      "subtleHover": {
+        "$value": "{palette.red.100}"
+      },
+      "border": {
+        "$value": "{palette.red.500}"
+      },
+      "text": {
+        "$value": "{palette.red.700}"
+      }
+    },
+    "info": {
+      "solid": {
+        "$value": "{palette.cyan.600}"
+      },
+      "solidHover": {
+        "$value": "{palette.cyan.700}"
+      },
+      "solidActive": {
+        "$value": "{palette.cyan.800}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.0}"
+      },
+      "subtle": {
+        "$value": "{palette.cyan.50}"
+      },
+      "subtleHover": {
+        "$value": "{palette.cyan.100}"
+      },
+      "border": {
+        "$value": "{palette.cyan.500}"
+      },
+      "text": {
+        "$value": "{palette.cyan.700}"
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "none": {
+      "$value": "none"
+    },
+    "xs": {
+      "$value": "0 1px 2px 0 rgba(16, 18, 21, 0.06)"
+    },
+    "sm": {
+      "$value": "0 1px 3px 0 rgba(16, 18, 21, 0.1), 0 1px 2px -1px rgba(16, 18, 21, 0.08)"
+    },
+    "md": {
+      "$value": "0 4px 8px -2px rgba(16, 18, 21, 0.1), 0 2px 4px -2px rgba(16, 18, 21, 0.06)"
+    },
+    "lg": {
+      "$value": "0 12px 20px -4px rgba(16, 18, 21, 0.12), 0 4px 8px -4px rgba(16, 18, 21, 0.06)"
+    },
+    "xl": {
+      "$value": "0 20px 32px -8px rgba(16, 18, 21, 0.16), 0 8px 12px -6px rgba(16, 18, 21, 0.06)"
+    },
+    "2xl": {
+      "$value": "0 28px 56px -12px rgba(16, 18, 21, 0.24)"
+    },
+    "inset": {
+      "$value": "inset 0 1px 2px 0 rgba(16, 18, 21, 0.08)"
+    }
+  }
+}

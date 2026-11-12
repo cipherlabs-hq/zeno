@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zeno in plain HTML</title>
+    <script type="module" src="./src/main.ts"></script>
+  </head>
+  <body>
+    <main class="sign-up">
+      <h1>Create an account</h1>
+      <form>
+        <zeno-input
+          name="email"
+          type="email"
+          label="Email"
+          required
+        ></zeno-input>
+        <zeno-select name="plan" label="Plan"></zeno-select>
+        <zeno-checkbox
+          name="updates"
+          label="Send me product updates"
+        ></zeno-checkbox>
+        <div class="actions">
+          <zeno-button type="submit">Create account</zeno-button>
+          <zeno-button id="show-details" variant="secondary">
+            Plan details
+          </zeno-button>
+          <zeno-button id="fill" variant="ghost">
+            Fill with an example
+          </zeno-button>
+        </div>
+      </form>
+      <p class="readout" data-testid="state"></p>
+      <p class="readout" data-testid="submitted"></p>
+      <p class="readout">
+        The details are <span data-testid="modal-state">closed</span>.
+      </p>
+      <zeno-modal heading="Plan details">
+        Free covers one project. Team and Company add shared projects.
+        <zeno-button slot="footer" id="close-details">Close</zeno-button>
+      </zeno-modal>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+---
+title: Accessibility
+description: What Zeno has checked for accessibility, what it has not, and where the known problems are listed.
+slug: /accessibility
+---
+
+import { Count } from '@site/src/components/ElementIndex';
+
+# Accessibility
+
+The aim is for every element to meet WCAG 2.2 at level AA. Zeno does not claim
+to meet it yet. This page says what has been checked and what has not.
+
+## What has been checked
+
+- **Colour contrast.** The token package tests a list of colour pairs in both
+  themes: 4.5:1 for text, and 3:1 for control boundaries, focus rings and
+  filled shapes. Disabled controls and decorative separators are not in the
+  list. The test runs with every build.
+- **<Count of="ownTests" /> of the <Count of="total" /> elements** have tests
+  that use them in a real browser with the keyboard and the mouse. Those
+  elements are also checked with axe-core in the light and the dark theme.
+  All <Count of="formControls" /> form-associated elements are among them.
+- **Form controls** use the browser's form association. They are labelled by
+  their `label` or by a `<label for>`, report validation the way native
+  controls do, and follow a disabled fieldset.
+- **Modal and drawer** are built on the browser's `<dialog>`. The rest of the
+  page cannot be reached while one is open, and focus returns when it closes.
+
+## What has not been checked
+
+- The other elements have no tests of their own and are not checked with
+  axe-core. The [status table](/elements#status-of-each-element) says which.
+- Nothing has been tested with a screen reader. The notes on each element's
+  page describe what the code does, not what VoiceOver, NVDA or JAWS reads.
+- The tests run in Chromium only.
+- Forced colours (Windows contrast themes), zoom to 400% and text spacing
+  have not been tested.
+- The text Zeno writes itself, such as validation messages and button names,
+  is in English only.
+
+## Known problems
+
+An automated check finds only part of what can be wrong. Each element's page
+ends with "Tests and known gaps", which lists what is known to be missing or
+wrong for that element, found by reading its source. There are
+
+<Count of="gaps" /> entries across the <Count of="total" /> pages. Some of them
+stop keyboard or screen reader users today. For example:
+
+- [Data table](/elements/data-table): sorting does not work with the keyboard.
+- [Slider](/elements/slider): keyboard focus has no visible indicator.
+- [Tooltip](/elements/tooltip): around a Zeno control, the tooltip does not
+  show for keyboard focus.
+
+Read the page of an element before you rely on it.
+
+## This site
+
+This site is built with Docusaurus and styled with Zeno's tokens. Its pages
+keep one visible focus ring, underline links in text, and do not scroll
+sideways at phone width. It has not had an accessibility audit either.
+
+## Report a problem
+
+Open an issue at
+[github.com/cipherlabs-hq/zeno/issues](https://github.com/cipherlabs-hq/zeno/issues)
+and say which element, which browser and which assistive technology.

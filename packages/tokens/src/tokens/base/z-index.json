@@ -1,0 +1,32 @@
+{
+  "zIndex": {
+    "$type": "number",
+    "base": {
+      "$value": 0
+    },
+    "raised": {
+      "$value": 1
+    },
+    "dropdown": {
+      "$value": 1000
+    },
+    "sticky": {
+      "$value": 1100
+    },
+    "drawer": {
+      "$value": 1200
+    },
+    "modal": {
+      "$value": 1300
+    },
+    "popover": {
+      "$value": 1400
+    },
+    "toast": {
+      "$value": 1500
+    },
+    "tooltip": {
+      "$value": 1600
+    }
+  }
+}

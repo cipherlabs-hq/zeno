@@ -1,0 +1,56 @@
+{
+  "name": "@usezeno/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Zeno design tokens: CSS custom properties and a JS/TS export, built with Style Dictionary",
+  "license": "MIT",
+  "homepage": "https://zeno.thecipherlabs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cipherlabs-hq/zeno.git",
+    "directory": "packages/tokens"
+  },
+  "bugs": {
+    "url": "https://github.com/cipherlabs-hq/zeno/issues"
+  },
+  "keywords": [
+    "design-tokens",
+    "css-custom-properties",
+    "design-system",
+    "zeno"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./css": {
+      "types": "./dist/css/tokens.css.d.ts",
+      "default": "./dist/css/tokens.css"
+    },
+    "./tokens.json": "./dist/tokens.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src/tokens"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.8.0"
+  }
+}

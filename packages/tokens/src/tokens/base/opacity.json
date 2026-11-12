@@ -1,0 +1,11 @@
+{
+  "opacity": {
+    "$type": "number",
+    "disabled": {
+      "$value": 0.5
+    },
+    "loading": {
+      "$value": 0.7
+    }
+  }
+}

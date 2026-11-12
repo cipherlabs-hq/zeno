@@ -1,0 +1,56 @@
+{
+  "name": "@usezeno/svelte",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Zeno for Svelte 5",
+  "license": "MIT",
+  "homepage": "https://zeno.thecipherlabs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cipherlabs-hq/zeno.git",
+    "directory": "packages/svelte"
+  },
+  "bugs": {
+    "url": "https://github.com/cipherlabs-hq/zeno/issues"
+  },
+  "keywords": [
+    "svelte",
+    "web-components",
+    "design-system",
+    "zeno"
+  ],
+  "type": "module",
+  "sideEffects": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "svelte": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "node ../../scripts/clean-dist.mjs && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@usezeno/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "svelte": "^5.57.3"
+  }
+}

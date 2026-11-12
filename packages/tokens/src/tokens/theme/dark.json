@@ -1,0 +1,293 @@
+{
+  "color": {
+    "$type": "color",
+    "background": {
+      "page": {
+        "$value": "{palette.gray.950}"
+      },
+      "surface": {
+        "$value": "{palette.gray.900}"
+      },
+      "subtle": {
+        "$value": "{palette.gray.850}"
+      },
+      "muted": {
+        "$value": "{palette.gray.800}"
+      },
+      "hover": {
+        "$value": "rgba(255, 255, 255, 0.08)"
+      },
+      "active": {
+        "$value": "rgba(255, 255, 255, 0.12)"
+      },
+      "selected": {
+        "$value": "{palette.blue.950}"
+      },
+      "disabled": {
+        "$value": "{palette.gray.850}"
+      },
+      "inverse": {
+        "$value": "{palette.gray.100}"
+      },
+      "scrim": {
+        "$value": "rgba(0, 0, 0, 0.65)"
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "{palette.gray.50}"
+      },
+      "secondary": {
+        "$value": "{palette.gray.300}"
+      },
+      "tertiary": {
+        "$value": "{palette.gray.400}"
+      },
+      "placeholder": {
+        "$value": "{palette.gray.400}"
+      },
+      "disabled": {
+        "$value": "{palette.gray.600}"
+      },
+      "inverse": {
+        "$value": "{palette.gray.950}"
+      },
+      "invalid": {
+        "$value": "{palette.red.300}"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{palette.gray.800}"
+      },
+      "default": {
+        "$value": "{palette.gray.700}"
+      },
+      "strong": {
+        "$value": "{palette.gray.600}"
+      },
+      "control": {
+        "$value": "{palette.gray.500}"
+      },
+      "controlHover": {
+        "$value": "{palette.gray.400}"
+      },
+      "disabled": {
+        "$value": "{palette.gray.700}"
+      },
+      "invalid": {
+        "$value": "{palette.red.400}"
+      }
+    },
+    "focus": {
+      "ring": {
+        "$value": "{palette.blue.400}"
+      }
+    },
+    "link": {
+      "default": {
+        "$value": "{palette.blue.300}"
+      },
+      "hover": {
+        "$value": "{palette.blue.200}"
+      },
+      "active": {
+        "$value": "{palette.blue.100}"
+      },
+      "visited": {
+        "$value": "{palette.violet.300}"
+      }
+    },
+    "selection": {
+      "background": {
+        "$value": "{palette.blue.800}"
+      },
+      "text": {
+        "$value": "{palette.gray.0}"
+      }
+    },
+    "accent": {
+      "solid": {
+        "$value": "{palette.blue.400}"
+      },
+      "solidHover": {
+        "$value": "{palette.blue.300}"
+      },
+      "solidActive": {
+        "$value": "{palette.blue.200}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.950}"
+      },
+      "subtle": {
+        "$value": "{palette.blue.950}"
+      },
+      "subtleHover": {
+        "$value": "{palette.blue.900}"
+      },
+      "border": {
+        "$value": "{palette.blue.500}"
+      },
+      "text": {
+        "$value": "{palette.blue.300}"
+      }
+    },
+    "neutral": {
+      "solid": {
+        "$value": "{palette.gray.200}"
+      },
+      "solidHover": {
+        "$value": "{palette.gray.100}"
+      },
+      "solidActive": {
+        "$value": "{palette.gray.0}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.950}"
+      },
+      "subtle": {
+        "$value": "{palette.gray.850}"
+      },
+      "subtleHover": {
+        "$value": "{palette.gray.800}"
+      },
+      "border": {
+        "$value": "{palette.gray.500}"
+      },
+      "text": {
+        "$value": "{palette.gray.300}"
+      }
+    },
+    "success": {
+      "solid": {
+        "$value": "{palette.green.400}"
+      },
+      "solidHover": {
+        "$value": "{palette.green.300}"
+      },
+      "solidActive": {
+        "$value": "{palette.green.200}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.950}"
+      },
+      "subtle": {
+        "$value": "{palette.green.950}"
+      },
+      "subtleHover": {
+        "$value": "{palette.green.900}"
+      },
+      "border": {
+        "$value": "{palette.green.500}"
+      },
+      "text": {
+        "$value": "{palette.green.300}"
+      }
+    },
+    "warning": {
+      "solid": {
+        "$value": "{palette.amber.400}"
+      },
+      "solidHover": {
+        "$value": "{palette.amber.300}"
+      },
+      "solidActive": {
+        "$value": "{palette.amber.200}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.950}"
+      },
+      "subtle": {
+        "$value": "{palette.amber.950}"
+      },
+      "subtleHover": {
+        "$value": "{palette.amber.900}"
+      },
+      "border": {
+        "$value": "{palette.amber.500}"
+      },
+      "text": {
+        "$value": "{palette.amber.300}"
+      }
+    },
+    "danger": {
+      "solid": {
+        "$value": "{palette.red.400}"
+      },
+      "solidHover": {
+        "$value": "{palette.red.300}"
+      },
+      "solidActive": {
+        "$value": "{palette.red.200}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.950}"
+      },
+      "subtle": {
+        "$value": "{palette.red.950}"
+      },
+      "subtleHover": {
+        "$value": "{palette.red.900}"
+      },
+      "border": {
+        "$value": "{palette.red.500}"
+      },
+      "text": {
+        "$value": "{palette.red.300}"
+      }
+    },
+    "info": {
+      "solid": {
+        "$value": "{palette.cyan.400}"
+      },
+      "solidHover": {
+        "$value": "{palette.cyan.300}"
+      },
+      "solidActive": {
+        "$value": "{palette.cyan.200}"
+      },
+      "onSolid": {
+        "$value": "{palette.gray.950}"
+      },
+      "subtle": {
+        "$value": "{palette.cyan.950}"
+      },
+      "subtleHover": {
+        "$value": "{palette.cyan.900}"
+      },
+      "border": {
+        "$value": "{palette.cyan.500}"
+      },
+      "text": {
+        "$value": "{palette.cyan.300}"
+      }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "none": {
+      "$value": "none"
+    },
+    "xs": {
+      "$value": "0 1px 2px 0 rgba(0, 0, 0, 0.4)"
+    },
+    "sm": {
+      "$value": "0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.4)"
+    },
+    "md": {
+      "$value": "0 4px 8px -2px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4)"
+    },
+    "lg": {
+      "$value": "0 12px 20px -4px rgba(0, 0, 0, 0.55), 0 4px 8px -4px rgba(0, 0, 0, 0.4)"
+    },
+    "xl": {
+      "$value": "0 20px 32px -8px rgba(0, 0, 0, 0.6), 0 8px 12px -6px rgba(0, 0, 0, 0.4)"
+    },
+    "2xl": {
+      "$value": "0 28px 56px -12px rgba(0, 0, 0, 0.7)"
+    },
+    "inset": {
+      "$value": "inset 0 1px 2px 0 rgba(0, 0, 0, 0.4)"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "instant": {
+        "$value": "0ms"
+      },
+      "xs": {
+        "$value": "75ms"
+      },
+      "sm": {
+        "$value": "150ms"
+      },
+      "md": {
+        "$value": "200ms"
+      },
+      "lg": {
+        "$value": "300ms"
+      },
+      "xl": {
+        "$value": "500ms"
+      },
+      "2xl": {
+        "$value": "700ms"
+      }
+    },
+    "easing": {
+      "$type": "cubicBezier",
+      "linear": {
+        "$value": [0, 0, 1, 1]
+      },
+      "ease": {
+        "$value": [0.25, 0.1, 0.25, 1]
+      },
+      "easeIn": {
+        "$value": [0.42, 0, 1, 1]
+      },
+      "easeOut": {
+        "$value": [0, 0, 0.58, 1]
+      },
+      "easeInOut": {
+        "$value": [0.42, 0, 0.58, 1]
+      },
+      "standard": {
+        "$value": [0.2, 0, 0, 1]
+      },
+      "spring": {
+        "$value": [0.175, 0.885, 0.32, 1.275]
+      },
+      "bounce": {
+        "$value": [0.68, -0.55, 0.265, 1.55]
+      }
+    }
+  }
+}

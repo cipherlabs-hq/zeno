@@ -1,0 +1,25 @@
+{
+  "name": "@usezeno/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Storybook for the Zeno web components",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@usezeno/core": "workspace:*",
+    "@usezeno/tokens": "workspace:*",
+    "lit": "^3.3.3"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^10.6.7",
+    "@storybook/addon-docs": "^10.6.7",
+    "@storybook/web-components-vite": "^10.6.7",
+    "storybook": "^10.6.7",
+    "vite": "^8.3.7"
+  }
+}

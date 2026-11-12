@@ -1,0 +1,277 @@
+---
+title: Tokens and theming
+sidebar_label: Tokens
+description: Every Zeno design token, shown live in the light and the dark theme.
+slug: /tokens
+---
+
+import {
+  MotionTokens,
+  Palette,
+  ScaleTokens,
+  ThemeTokens,
+  TokenCount,
+} from '@site/src/components/TokenTables';
+
+# Tokens and theming
+
+Every colour, space, radius, type size and duration in Zeno is a design token.
+The tokens live in `@usezeno/tokens` as JSON, and Style Dictionary builds them
+into a stylesheet and a JavaScript module. There are <TokenCount /> of them.
+The tables on this page are built from that package and drawn with the tokens
+themselves, so they always show the current values.
+
+## Load the stylesheet
+
+Load the stylesheet once per page, before any Zeno element renders:
+
+```js
+import '@usezeno/tokens/css';
+```
+
+It defines each token as a custom property that starts with `--zeno-`. The
+Zeno elements read those properties and carry no fallback values. An element
+on a page without the stylesheet has no colours or spacing.
+
+## Light and dark
+
+Light is the default theme. The stylesheet switches to dark when the operating
+system asks for dark. To override that, set `data-theme`:
+
+| Markup                      | Result                                    |
+| --------------------------- | ----------------------------------------- |
+| `<html>`                    | Follows the operating system              |
+| `<html data-theme="light">` | Light, whatever the operating system says |
+| `<html data-theme="dark">`  | Dark, whatever the operating system says  |
+
+`data-theme` also works on any element, and themes that element and
+everything inside it:
+
+```html
+<section data-theme="dark">
+  <zeno-button>Dark, on a light page</zeno-button>
+</section>
+```
+
+`@usezeno/core` exports helpers that set the attribute for you:
+
+```js
+import { getTheme, setTheme, onSystemThemeChange } from '@usezeno/core';
+
+setTheme('dark'); // sets data-theme="dark" on <html>
+setTheme('system'); // removes the attribute
+getTheme(); // 'light' or 'dark', after resolving 'system'
+const stop = onSystemThemeChange(theme => console.log(theme));
+```
+
+## Colour
+
+Colour tokens change with the theme. Each row shows the token in the light
+theme and in the dark theme, whatever the theme of this page is.
+
+### Background
+
+<ThemeTokens group="color.background" />
+
+### Text
+
+<ThemeTokens group="color.text" />
+
+### Border
+
+<ThemeTokens group="color.border" />
+
+### Focus, links and selection
+
+<ThemeTokens group="color.focus" />
+
+<ThemeTokens group="color.link" />
+
+<ThemeTokens group="color.selection" />
+
+### Colour families
+
+The colour families are `accent`, `neutral`, `success`, `warning`, `danger`
+and `info`. Each one has the same eight tokens:
+
+| Token                       | Use                                          |
+| --------------------------- | -------------------------------------------- |
+| `solid`                     | A filled control or shape                    |
+| `solidHover`, `solidActive` | The same fill when hovered or pressed        |
+| `onSolid`                   | Text and icons on the solid fill             |
+| `subtle`, `subtleHover`     | A tinted background                          |
+| `border`                    | An outline in the family colour              |
+| `text`                      | Coloured text on a page or subtle background |
+
+### Accent
+
+<ThemeTokens group="color.accent" />
+
+### Neutral
+
+<ThemeTokens group="color.neutral" />
+
+### Success
+
+<ThemeTokens group="color.success" />
+
+### Warning
+
+<ThemeTokens group="color.warning" />
+
+### Danger
+
+<ThemeTokens group="color.danger" />
+
+### Info
+
+<ThemeTokens group="color.info" />
+
+### Palette
+
+The theme tokens above point at these steps. The palette is the same in both
+themes. Use a theme token in your own styles where one fits, so your colours
+follow the theme.
+
+<Palette />
+
+## States
+
+| State    | Tokens                                                                             |
+| -------- | ---------------------------------------------------------------------------------- |
+| Hover    | `color.background.hover`, `color.border.controlHover`, `solidHover`, `subtleHover` |
+| Active   | `color.background.active`, `solidActive`                                           |
+| Selected | `color.background.selected`                                                        |
+| Focus    | `color.focus.ring`, `focus.ring.width`, `focus.ring.offset`                        |
+| Disabled | `color.text.disabled`, `color.background.disabled`, `color.border.disabled`        |
+| Invalid  | `color.text.invalid`, `color.border.invalid`                                       |
+
+## Change the accent
+
+The theme tokens point at palette steps, so you can re-theme by overriding a
+few properties after the Zeno stylesheet:
+
+```css
+:root {
+  --zeno-color-accent-solid: #0f766e;
+  --zeno-color-accent-solid-hover: #115e59;
+  --zeno-color-accent-solid-active: #134e4a;
+}
+```
+
+Zeno checks its own colour pairs for contrast. It cannot check yours, so test
+any colour you override against the text and backgrounds it appears with.
+
+## Fonts
+
+The font tokens name IBM Plex Sans and IBM Plex Mono first, followed by system
+fonts. Zeno ships no font files. Load IBM Plex yourself if you want it. If you
+do not, the system fonts apply.
+
+## Contrast
+
+The token package tests a list of colour pairs against WCAG 2.2 AA in both
+themes: 4.5:1 for text, and 3:1 for control boundaries, focus rings and filled
+shapes. The list is in `packages/tokens/test/contrast-pairs.mjs`, and the test
+runs as part of `pnpm test`.
+
+Disabled controls and decorative separators are not in the list. WCAG exempts
+them from these two criteria.
+
+## Type
+
+### Families
+
+<ScaleTokens group="font.family" show="family" />
+
+### Sizes
+
+<ScaleTokens group="font.size" show="size" ordered />
+
+### Weights
+
+<ScaleTokens group="font.weight" show="weight" />
+
+### Line heights
+
+<ScaleTokens group="font.lineHeight" />
+
+### Letter spacing
+
+<ScaleTokens group="font.letterSpacing" show="tracking" />
+
+## Spacing
+
+<ScaleTokens group="spacing" show="width" ordered />
+
+## Radius
+
+<ScaleTokens group="radius" show="radius" />
+
+## Shadow
+
+Shadows are stronger in the dark theme, where a soft shadow would not show.
+
+<ThemeTokens group="shadow" />
+
+## Motion
+
+Press Play to move a marker along each row with that row's token. If your
+system asks for reduced motion, the markers jump without moving.
+
+### Durations
+
+<MotionTokens group="motion.duration" />
+
+### Easings
+
+<MotionTokens group="motion.easing" />
+
+## Sizes
+
+### Controls
+
+<ScaleTokens group="size.control" show="square" />
+
+### Icons
+
+<ScaleTokens group="size.icon" show="square" />
+
+### Avatars
+
+<ScaleTokens group="size.avatar" show="square" />
+
+### Smallest target
+
+<ScaleTokens group="size.target" show="square" />
+
+## Borders and the focus ring
+
+<ScaleTokens group="border.width" show="line" />
+
+<ScaleTokens group="focus.ring" />
+
+## Opacity
+
+<ScaleTokens group="opacity" show="opacity" />
+
+## Breakpoints
+
+CSS custom properties cannot be used in a media query. These are for
+JavaScript and for reference.
+
+<ScaleTokens group="breakpoint" ordered />
+
+## Layers
+
+<ScaleTokens group="zIndex" />
+
+## Use tokens in JavaScript
+
+```js
+import { tokens, light, dark, vars } from '@usezeno/tokens';
+
+tokens.spacing[4]; // '1rem'
+light.color.text.primary; // the resolved light value
+vars.color.text.primary; // 'var(--zeno-color-text-primary)'
+```

@@ -1,0 +1,47 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "neverConnectToCloud": true,
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [
+      "{workspaceRoot}/tsconfig.base.json",
+      "{workspaceRoot}/pnpm-lock.yaml"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default"],
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+    "build-storybook": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/storybook-static"],
+      "cache": true
+    },
+    "build-docs": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/CHANGELOG.md",
+        "{workspaceRoot}/.changeset/*",
+        "{workspaceRoot}/examples/**/*",
+        "{workspaceRoot}/packages/storybook/stories/**/*"
+      ],
+      "outputs": ["{projectRoot}/build"],
+      "cache": true
+    }
+  }
+}

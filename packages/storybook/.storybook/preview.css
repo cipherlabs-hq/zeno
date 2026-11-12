@@ -1,0 +1,6 @@
+/* Page defaults for the preview frame, taken from the tokens. */
+body {
+  background: var(--zeno-color-background-page);
+  color: var(--zeno-color-text-primary);
+  font-family: var(--zeno-font-family-sans);
+}

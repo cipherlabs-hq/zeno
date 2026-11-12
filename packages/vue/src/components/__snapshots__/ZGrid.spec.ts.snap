@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ZGrid > matches snapshot with default props 1`] = `
+"<div data-v-6aac0871="" class="z-grid" style="--cols: repeat(1, 1fr); --gap: var(--zeno-spacing-4); --align: stretch; --justify: start;">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>"
+`;
+
+exports[`ZGrid > matches snapshot with responsive props 1`] = `
+"<div data-v-6aac0871="" class="z-grid" style="--cols-sm: repeat(1, 1fr); --cols-md: repeat(2, 1fr); --cols-lg: repeat(3, 1fr); --gap-sm: var(--zeno-spacing-2); --gap-md: var(--zeno-spacing-4); --align: center; --justify: space-between;">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>"
+`;

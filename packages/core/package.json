@@ -1,0 +1,68 @@
+{
+  "name": "@usezeno/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Zeno web components, built with Lit",
+  "license": "MIT",
+  "homepage": "https://zeno.thecipherlabs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cipherlabs-hq/zeno.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/cipherlabs-hq/zeno/issues"
+  },
+  "keywords": [
+    "web-components",
+    "custom-elements",
+    "lit",
+    "design-system",
+    "zeno"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "./dist/web-components.js",
+    "./dist/components/**/*.js"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./web-components": {
+      "types": "./dist/web-components.d.ts",
+      "default": "./dist/web-components.js"
+    },
+    "./custom-elements.json": "./dist/custom-elements.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "node ../../scripts/clean-dist.mjs && tsc -p tsconfig.build.json && cem analyze",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@usezeno/tokens": "workspace:*",
+    "lit": "^3.3.3"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.11.0",
+    "@vitest/browser-playwright": "^5.1.0",
+    "axe-core": "^4.14.0",
+    "jsdom": "^31.0.0",
+    "playwright": "^1.65.0",
+    "vitest": "^5.1.0"
+  },
+  "customElements": "dist/custom-elements.json"
+}

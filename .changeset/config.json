@@ -1,0 +1,21 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [
+    [
+      "@usezeno/tokens",
+      "@usezeno/core",
+      "@usezeno/react",
+      "@usezeno/vue",
+      "@usezeno/svelte",
+      "@usezeno/styles",
+      "@usezeno/composables"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@usezeno/storybook", "@usezeno/docs", "@usezeno/example-*"]
+}

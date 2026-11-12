@@ -1,0 +1,40 @@
+/* Page styles shared by the example apps. Everything comes from Zeno tokens. */
+
+body {
+  margin: 0;
+  background: var(--zeno-color-background-page);
+  color: var(--zeno-color-text-primary);
+  font-family: var(--zeno-font-family-sans);
+  font-size: var(--zeno-font-size-md);
+  line-height: var(--zeno-font-line-height-normal);
+}
+
+.sign-up {
+  box-sizing: border-box;
+  max-width: 28rem;
+  margin: 0 auto;
+  padding: var(--zeno-spacing-8) var(--zeno-spacing-4);
+}
+
+.sign-up h1 {
+  margin: 0 0 var(--zeno-spacing-6);
+  font-size: var(--zeno-font-size-2xl);
+  line-height: var(--zeno-font-line-height-tight);
+}
+
+.sign-up form {
+  display: grid;
+  gap: var(--zeno-spacing-4);
+}
+
+.sign-up .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--zeno-spacing-2);
+}
+
+.sign-up .readout {
+  margin: var(--zeno-spacing-4) 0 0;
+  color: var(--zeno-color-text-secondary);
+  font-size: var(--zeno-font-size-sm);
+}

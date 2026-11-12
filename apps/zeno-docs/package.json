@@ -1,0 +1,43 @@
+{
+  "name": "@usezeno/docs",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "start": "node scripts/generate.mjs && docusaurus start",
+    "build-docs": "node scripts/generate.mjs && docusaurus build && node scripts/check-headers.mjs",
+    "typecheck": "node scripts/generate.mjs && tsc -p tsconfig.json --noEmit",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@mdx-js/react": "^3.0.0",
+    "@usezeno/core": "workspace:*",
+    "@usezeno/tokens": "workspace:*",
+    "clsx": "^2.0.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/tsconfig": "3.10.2",
+    "@docusaurus/types": "3.10.2",
+    "@types/react": "^19.3.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  }
+}

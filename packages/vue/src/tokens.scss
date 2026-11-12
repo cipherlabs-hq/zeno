@@ -1,0 +1,7 @@
+/* 
+ * Centralized design token imports for Zeno Vue components
+ * This file provides a single source for all token imports from the centralized styles package.
+ */
+
+@use '@usezeno/styles/scss/_tokens' as tokens;
+@forward '@usezeno/styles/scss/_tokens';

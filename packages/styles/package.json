@@ -1,0 +1,50 @@
+{
+  "name": "@usezeno/styles",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Sass variables for the Vue single-file components, generated from @usezeno/tokens",
+  "license": "MIT",
+  "homepage": "https://zeno.thecipherlabs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cipherlabs-hq/zeno.git",
+    "directory": "packages/styles"
+  },
+  "bugs": {
+    "url": "https://github.com/cipherlabs-hq/zeno/issues"
+  },
+  "keywords": [
+    "sass",
+    "design-tokens",
+    "design-system",
+    "zeno"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "sass": "./scss/_tokens.scss"
+    },
+    "./tokens": {
+      "sass": "./scss/_tokens.scss"
+    },
+    "./scss/*": {
+      "sass": "./scss/*.scss"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "scss"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "@usezeno/tokens": "workspace:*"
+  }
+}

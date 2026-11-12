@@ -1,0 +1,16 @@
+dist
+build
+coverage
+storybook-static
+.docusaurus
+.nx
+node_modules
+pnpm-lock.yaml
+custom-elements.json
+**/__snapshots__/**
+
+# Written by apps/zeno-docs/scripts/generate.mjs
+apps/zeno-docs/src/generated
+apps/zeno-docs/docs/releases.md
+apps/zeno-docs/docs/elements/*.mdx
+!apps/zeno-docs/docs/elements/index.mdx

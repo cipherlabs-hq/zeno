@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ZPaper > matches snapshot when outlined 1`] = `
+"<div data-v-0990656c="" class="z-paper z-paper--elevation-1 z-paper--radius-lg z-paper--outlined" style="background: var(--zeno-color-background-surface); color: var(--zeno-color-text-primary); box-shadow: none; border-radius: var(--zeno-radius-lg); border: 1px solid var(--zeno-color-border-default); transition: all var(--zeno-motion-duration-md) var(--zeno-motion-easing-ease-out); opacity: 0; transform: scale(0.95);">
+  <div>Outlined paper content</div>
+</div>"
+`;
+
+exports[`ZPaper > matches snapshot with default props 1`] = `
+"<div data-v-0990656c="" class="z-paper z-paper--elevation-1 z-paper--radius-md" style="background: var(--zeno-color-background-surface); color: var(--zeno-color-text-primary); box-shadow: var(--zeno-shadow-sm); border-radius: var(--zeno-radius-md); border: medium; transition: all var(--zeno-motion-duration-md) var(--zeno-motion-easing-ease-out); opacity: 0; transform: scale(0.95);">
+  <div>Default paper content</div>
+</div>"
+`;
+
+exports[`ZPaper > matches snapshot with elevation 0 1`] = `
+"<div data-v-0990656c="" class="z-paper z-paper--elevation-0 z-paper--radius-md" style="background: var(--zeno-color-background-surface); color: var(--zeno-color-text-primary); box-shadow: none; border-radius: var(--zeno-radius-md); border: medium; transition: all var(--zeno-motion-duration-md) var(--zeno-motion-easing-ease-out); opacity: 0; transform: scale(0.95);">
+  <div>No shadow paper</div>
+</div>"
+`;
+
+exports[`ZPaper > matches snapshot with maximum elevation and radius 1`] = `
+"<div data-v-0990656c="" class="z-paper z-paper--elevation-5 z-paper--radius-xl" style="background: var(--zeno-color-background-surface); color: var(--zeno-color-text-primary); box-shadow: var(--zeno-shadow-2xl); border-radius: var(--zeno-radius-xl); border: medium; transition: all var(--zeno-motion-duration-md) var(--zeno-motion-easing-ease-out); opacity: 0; transform: scale(0.95);">
+  <div>Maximum elevation paper</div>
+</div>"
+`;

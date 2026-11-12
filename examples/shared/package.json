@@ -1,0 +1,12 @@
+{
+  "name": "@usezeno/example-shared",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The page styles, data and checks the Zeno example apps share",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@usezeno/core": "workspace:*",
+    "vitest": "^5.1.0"
+  }
+}

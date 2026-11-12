@@ -1,0 +1,76 @@
+{
+  "name": "@usezeno/vue",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Zeno for Vue 3",
+  "license": "MIT",
+  "homepage": "https://zeno.thecipherlabs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cipherlabs-hq/zeno.git",
+    "directory": "packages/vue"
+  },
+  "bugs": {
+    "url": "https://github.com/cipherlabs-hq/zeno/issues"
+  },
+  "keywords": [
+    "vue",
+    "web-components",
+    "design-system",
+    "zeno"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "**/*.css",
+    "./dist/index.js"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./elements": {
+      "types": "./dist/elements/index.d.ts",
+      "default": "./dist/elements.js"
+    },
+    "./style.css": "./dist/vue.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "vite build && vue-tsc -p tsconfig.build.json",
+    "typecheck": "vue-tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@tanstack/virtual-core": "^3.19.11",
+    "@vuepic/vue-datepicker": "^11.0.2",
+    "@usezeno/composables": "workspace:*",
+    "@usezeno/core": "workspace:*",
+    "lucide-vue-next": "^0.513.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/test-utils": "^2.4.6",
+    "@usezeno/styles": "workspace:*",
+    "jest-axe": "^11.0.0",
+    "jsdom": "^31.0.0",
+    "sass-embedded": "^1.89.1",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0",
+    "vue": "^3.5.45",
+    "vue-tsc": "^3.3.14"
+  }
+}

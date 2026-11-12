@@ -1,0 +1,27 @@
+{
+  "name": "@usezeno/example-svelte",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Zeno elements in a Svelte 5 app",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "typecheck": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@usezeno/svelte": "workspace:*",
+    "@usezeno/tokens": "workspace:*",
+    "svelte": "^5.57.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "svelte-check": "^4.0.0",
+    "@vitest/browser-playwright": "^5.1.0",
+    "playwright": "^1.65.0",
+    "vitest": "^5.1.0",
+    "vite": "^8.3.7"
+  }
+}

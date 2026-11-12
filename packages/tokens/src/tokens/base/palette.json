@@ -1,0 +1,266 @@
+{
+  "palette": {
+    "$type": "color",
+    "gray": {
+      "$description": "Neutral ramp with a slight cool cast. 0 is white, 1000 is black.",
+      "0": {
+        "$value": "#ffffff"
+      },
+      "50": {
+        "$value": "#f9fafd"
+      },
+      "100": {
+        "$value": "#f2f3f6"
+      },
+      "200": {
+        "$value": "#e5e6e9"
+      },
+      "300": {
+        "$value": "#d1d4da"
+      },
+      "400": {
+        "$value": "#a8abb0"
+      },
+      "500": {
+        "$value": "#85888d"
+      },
+      "600": {
+        "$value": "#66696e"
+      },
+      "700": {
+        "$value": "#4d5054"
+      },
+      "800": {
+        "$value": "#33353a"
+      },
+      "850": {
+        "$value": "#25282c"
+      },
+      "900": {
+        "$value": "#1a1c20"
+      },
+      "950": {
+        "$value": "#101215"
+      },
+      "1000": {
+        "$value": "#000000"
+      }
+    },
+    "blue": {
+      "$description": "The single accent hue of the default theme.",
+      "50": {
+        "$value": "#f2f7fe"
+      },
+      "100": {
+        "$value": "#e3eefe"
+      },
+      "200": {
+        "$value": "#c8deff"
+      },
+      "300": {
+        "$value": "#a0c6fe"
+      },
+      "400": {
+        "$value": "#68a5ff"
+      },
+      "500": {
+        "$value": "#3485f9"
+      },
+      "600": {
+        "$value": "#136adc"
+      },
+      "700": {
+        "$value": "#0053b7"
+      },
+      "800": {
+        "$value": "#003f8e"
+      },
+      "900": {
+        "$value": "#002c6a"
+      },
+      "950": {
+        "$value": "#001b47"
+      }
+    },
+    "green": {
+      "$description": "Success feedback.",
+      "50": {
+        "$value": "#eefbf1"
+      },
+      "100": {
+        "$value": "#dff3e3"
+      },
+      "200": {
+        "$value": "#c7e6ce"
+      },
+      "300": {
+        "$value": "#9fd3ac"
+      },
+      "400": {
+        "$value": "#66ba7f"
+      },
+      "500": {
+        "$value": "#29a259"
+      },
+      "600": {
+        "$value": "#058644"
+      },
+      "700": {
+        "$value": "#016c35"
+      },
+      "800": {
+        "$value": "#005226"
+      },
+      "900": {
+        "$value": "#003b1a"
+      },
+      "950": {
+        "$value": "#00260e"
+      }
+    },
+    "amber": {
+      "$description": "Warning feedback.",
+      "50": {
+        "$value": "#fef5ec"
+      },
+      "100": {
+        "$value": "#fbead8"
+      },
+      "200": {
+        "$value": "#f1d8bd"
+      },
+      "300": {
+        "$value": "#e6bb8e"
+      },
+      "400": {
+        "$value": "#d6954a"
+      },
+      "500": {
+        "$value": "#bf7601"
+      },
+      "600": {
+        "$value": "#9d6000"
+      },
+      "700": {
+        "$value": "#7e4d00"
+      },
+      "800": {
+        "$value": "#603a01"
+      },
+      "900": {
+        "$value": "#472800"
+      },
+      "950": {
+        "$value": "#2e1800"
+      }
+    },
+    "red": {
+      "$description": "Danger and invalid feedback.",
+      "50": {
+        "$value": "#fef4f3"
+      },
+      "100": {
+        "$value": "#ffe6e4"
+      },
+      "200": {
+        "$value": "#fed0ca"
+      },
+      "300": {
+        "$value": "#fdaca3"
+      },
+      "400": {
+        "$value": "#f57a71"
+      },
+      "500": {
+        "$value": "#e54c48"
+      },
+      "600": {
+        "$value": "#c72d2e"
+      },
+      "700": {
+        "$value": "#aa0216"
+      },
+      "800": {
+        "$value": "#83010e"
+      },
+      "900": {
+        "$value": "#610007"
+      },
+      "950": {
+        "$value": "#410002"
+      }
+    },
+    "cyan": {
+      "$description": "Informational feedback.",
+      "50": {
+        "$value": "#edf9fe"
+      },
+      "100": {
+        "$value": "#dcf1f9"
+      },
+      "200": {
+        "$value": "#c4e2ee"
+      },
+      "300": {
+        "$value": "#98cee1"
+      },
+      "400": {
+        "$value": "#58b2d0"
+      },
+      "500": {
+        "$value": "#0398bb"
+      },
+      "600": {
+        "$value": "#037c9a"
+      },
+      "700": {
+        "$value": "#00647c"
+      },
+      "800": {
+        "$value": "#014c5f"
+      },
+      "900": {
+        "$value": "#003645"
+      },
+      "950": {
+        "$value": "#00222d"
+      }
+    },
+    "violet": {
+      "$description": "Visited links only.",
+      "50": {
+        "$value": "#f9f5fe"
+      },
+      "100": {
+        "$value": "#f1e8fe"
+      },
+      "200": {
+        "$value": "#e5d4fb"
+      },
+      "300": {
+        "$value": "#d3b4f7"
+      },
+      "400": {
+        "$value": "#bb8af0"
+      },
+      "500": {
+        "$value": "#a464e3"
+      },
+      "600": {
+        "$value": "#8b49c6"
+      },
+      "700": {
+        "$value": "#732eac"
+      },
+      "800": {
+        "$value": "#5b148f"
+      },
+      "900": {
+        "$value": "#420f67"
+      },
+      "950": {
+        "$value": "#2a0a43"
+      }
+    }
+  }
+}
