@@ -115,8 +115,6 @@ form.addEventListener('submit', event => {
   ],
 
   gaps: [
-    // zeno-date-picker.ts:658 against icon/zeno-icon.ts:233-250: `calendar` is not registered.
-    'The calendar icon in the button is missing. The picker asks for the icon `calendar`, which `zeno-icon` does not register.',
     // zeno-date-picker.ts:636-660: the control is a <button>, not an <input>.
     'A date cannot be typed. The only way to enter one is to pick it in the calendar, which is slow for dates far away, such as a date of birth. There is no way to jump to a year except Shift+PageUp and Shift+PageDown.',
     // zeno-date-picker.ts:549-566: selectDate and selectToday are the only ways the user changes the value.

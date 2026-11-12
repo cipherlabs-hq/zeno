@@ -56,11 +56,28 @@ export class ZenoSlider extends FormFieldMixin(ZenoElement) {
       /* Native range input (hidden but functional) */
       .slider__input {
         position: absolute;
+        inset: 0;
         width: 100%;
         height: 100%;
+        margin: 0;
         opacity: 0;
         cursor: pointer;
         z-index: 2;
+      }
+
+      /* The invisible native thumb is as wide as the drawn one, so a press
+         lands on the same value the drawn thumb shows. */
+      .slider__input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: var(--slider-thumb-size);
+        height: var(--slider-thumb-size);
+      }
+
+      .slider__input::-moz-range-thumb {
+        width: var(--slider-thumb-size);
+        height: var(--slider-thumb-size);
+        border: 0;
       }
 
       .slider--disabled .slider__input {
@@ -74,7 +91,6 @@ export class ZenoSlider extends FormFieldMixin(ZenoElement) {
         height: var(--slider-height);
         background: var(--slider-track-color);
         border-radius: var(--slider-height);
-        overflow: hidden;
       }
 
       /* Size variants */
@@ -126,6 +142,8 @@ export class ZenoSlider extends FormFieldMixin(ZenoElement) {
       /* Focus state */
       .slider__input:focus-visible ~ .slider__track .slider__thumb {
         box-shadow: var(--slider-thumb-shadow), var(--slider-focus-ring);
+        outline: var(--zeno-focus-ring-width) solid var(--zeno-color-focus-ring);
+        outline-offset: var(--zeno-focus-ring-offset);
       }
 
       /* Active state */
@@ -164,6 +182,9 @@ export class ZenoSlider extends FormFieldMixin(ZenoElement) {
       .slider__marks {
         position: relative;
         width: 100%;
+        min-height: calc(
+          8px + var(--zeno-spacing-1) + var(--zeno-font-size-xs) * 1.5
+        );
         margin-top: var(--zeno-spacing-2);
       }
 
@@ -408,9 +429,10 @@ export class ZenoSlider extends FormFieldMixin(ZenoElement) {
       '--slider-percentage': `${this.percentage}%`,
     };
 
-    const thumbStyles = {
-      left: `${this.percentage}%`,
-    };
+    // The thumb travels between half its width from each end, as the native
+    // thumb does.
+    const travel = `calc(var(--slider-thumb-size) / 2 + (100% - var(--slider-thumb-size)) * ${this.percentage / 100})`;
+    const thumbStyles = { left: travel };
 
     const marks = this.getMarks();
 
@@ -447,7 +469,7 @@ export class ZenoSlider extends FormFieldMixin(ZenoElement) {
           <div
             class="slider__fill"
             part="fill"
-            style="width: ${this.percentage}%"
+            style=${styleMap({ width: travel })}
           ></div>
 
           <div
@@ -474,7 +496,12 @@ export class ZenoSlider extends FormFieldMixin(ZenoElement) {
                 <div class="slider__marks" part="marks">
                   ${marks.map(
                     mark => html`
-                      <div class="slider__mark" style="left: ${mark.position}%">
+                      <div
+                        class="slider__mark"
+                        style=${styleMap({
+                          left: `calc(var(--slider-thumb-size) / 2 + (100% - var(--slider-thumb-size)) * ${mark.position / 100})`,
+                        })}
+                      >
                         <div class="slider__mark-tick"></div>
                         ${
                           mark.label

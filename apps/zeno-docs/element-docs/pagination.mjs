@@ -100,7 +100,5 @@ export default {
     'The jump field does not follow `size`. It is always 32px high.',
     // zeno-pagination.ts:191-195: outline: none with a border colour and box-shadow in its place.
     'The jump field removes its focus outline and shows a border colour and a shadow instead. A shadow is not drawn in forced colours mode.',
-    // zeno-pagination.ts:429, 483: size="20"; zeno-icon.ts:33-51 styles xs to xl only.
-    'The element gives its arrow icons the size `20`, which `zeno-icon` does not have, so they render at the default size.',
   ],
 };

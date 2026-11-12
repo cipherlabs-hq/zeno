@@ -26,16 +26,20 @@ import type {
   ZenoCard,
   ZenoCheckbox,
   ZenoChip,
+  ZenoCodeSnippet,
   ZenoContainer,
   ZenoDataTable,
   ZenoDatePicker,
+  ZenoDisclosure,
   ZenoDivider,
   ZenoDrawer,
   ZenoFileUpload,
   ZenoGrid,
   ZenoHamburger,
   ZenoIcon,
+  ZenoInlineLoading,
   ZenoInput,
+  ZenoLink,
   ZenoModal,
   ZenoNavRail,
   ZenoPagination,
@@ -54,6 +58,7 @@ import type {
   ZenoTextarea,
   ZenoThemeToggle,
   ZenoToast,
+  ZenoToggletip,
   ZenoTooltip,
 } from '@usezeno/core/web-components';
 
@@ -111,8 +116,12 @@ export interface ZenoElements {
     | 'animateOut'
     | 'appearance'
     | 'closable'
+    | 'closeLabel'
     | 'compact'
+    | 'heading'
+    | 'headingLevel'
     | 'icon'
+    | 'live'
     | 'message'
     | 'testId'
     | 'title'
@@ -120,6 +129,8 @@ export interface ZenoElements {
     {
       'animate-in'?: ZenoAlert['animateIn'];
       'animate-out'?: ZenoAlert['animateOut'];
+      'close-label'?: ZenoAlert['closeLabel'];
+      'heading-level'?: ZenoAlert['headingLevel'];
       /**
        * The alert appeared.
        */
@@ -357,6 +368,35 @@ export interface ZenoElements {
     }
   >;
   /**
+   * Code to read and copy: a command, a URL or a key. A button copies the text
+   * to the clipboard and says so.
+   */
+  'zeno-code-snippet': ElementProps<
+    ZenoCodeSnippet,
+    | 'copyLabel'
+    | 'errorFeedback'
+    | 'feedback'
+    | 'hideCopyButton'
+    | 'label'
+    | 'testId'
+    | 'type'
+    | 'value'
+    | 'wrap',
+    {
+      'copy-label'?: ZenoCodeSnippet['copyLabel'];
+      'error-feedback'?: ZenoCodeSnippet['errorFeedback'];
+      'hide-copy-button'?: ZenoCodeSnippet['hideCopyButton'];
+      /**
+       * The text was copied.
+       */
+      oncopied?: (event: CustomEvent<{ text: string }>) => void;
+      /**
+       * The clipboard refused the text.
+       */
+      'oncopy-failed'?: (event: CustomEvent<{ error: unknown }>) => void;
+    }
+  >;
+  /**
    * Centres content and keeps it within a maximum width.
    */
   'zeno-container': ElementProps<
@@ -470,6 +510,21 @@ export interface ZenoElements {
        * The calendar closed.
        */
       onclose?: (event: CustomEvent) => void;
+    }
+  >;
+  /**
+   * One section that opens and closes, with any content inside. Built on a
+   * native `<details>` element. Put several next to each other for an
+   * accordion whose panels hold markup.
+   */
+  'zeno-disclosure': ElementProps<
+    ZenoDisclosure,
+    'open' | 'testId',
+    {
+      /**
+       * The section opened or closed.
+       */
+      ontoggle?: (event: CustomEvent<{ open: boolean }>) => void;
     }
   >;
   /**
@@ -610,7 +665,7 @@ export interface ZenoElements {
    */
   'zeno-hamburger': ElementProps<
     ZenoHamburger,
-    'active' | 'disabled' | 'size' | 'testId' | 'variant',
+    'active' | 'disabled' | 'label' | 'size' | 'testId' | 'variant',
     {
       /**
        * The button was toggled.
@@ -636,6 +691,15 @@ export interface ZenoElements {
     Record<never, never>
   >;
   /**
+   * A small line that says something is in progress, then that it finished or
+   * failed. Use it in place of a button while a form sends, for example.
+   */
+  'zeno-inline-loading': ElementProps<
+    ZenoInlineLoading,
+    'description' | 'status' | 'testId',
+    Record<never, never>
+  >;
+  /**
    * A single-line text field. It takes part in forms as a native input does.
    */
   'zeno-input': ElementProps<
@@ -647,6 +711,7 @@ export interface ZenoElements {
     | 'dirty'
     | 'disabled'
     | 'error'
+    | 'helpText'
     | 'hideRequiredIndicator'
     | 'label'
     | 'loading'
@@ -669,6 +734,7 @@ export interface ZenoElements {
     | 'value'
     | 'variant',
     {
+      'help-text'?: ZenoInput['helpText'];
       'hide-required-indicator'?: ZenoInput['hideRequiredIndicator'];
       'show-password-toggle'?: ZenoInput['showPasswordToggle'];
       /**
@@ -691,6 +757,26 @@ export interface ZenoElements {
        * The password was shown or hidden.
        */
       'onpassword-toggle'?: (event: CustomEvent<{ visible: boolean }>) => void;
+    }
+  >;
+  /**
+   * A text link. With `href` it renders its own anchor. Without one it styles
+   * the anchor you put inside it, such as a router's link component, so
+   * client-side navigation keeps working.
+   */
+  'zeno-link': ElementProps<
+    ZenoLink,
+    | 'disabled'
+    | 'download'
+    | 'external'
+    | 'href'
+    | 'newTabLabel'
+    | 'rel'
+    | 'standalone'
+    | 'target'
+    | 'testId',
+    {
+      'new-tab-label'?: ZenoLink['newTabLabel'];
     }
   >;
   /**
@@ -1111,6 +1197,7 @@ export interface ZenoElements {
     | 'testId'
     | 'variant',
     {
+      'close-label'?: ZenoTag['closeLabel'];
       /**
        * The close button was pressed.
        */
@@ -1216,6 +1303,24 @@ export interface ZenoElements {
       onhide?: (event: CustomEvent) => void;
       /**
        * The close button was pressed.
+       */
+      onclose?: (event: CustomEvent) => void;
+    }
+  >;
+  /**
+   * A small button that opens a note on click, tap, Enter or Space. Unlike a
+   * tooltip it works on touch screens and the note can hold links.
+   */
+  'zeno-toggletip': ElementProps<
+    ZenoToggletip,
+    'label' | 'open' | 'testId',
+    {
+      /**
+       * The note opened.
+       */
+      onopen?: (event: CustomEvent) => void;
+      /**
+       * The note closed.
        */
       onclose?: (event: CustomEvent) => void;
     }

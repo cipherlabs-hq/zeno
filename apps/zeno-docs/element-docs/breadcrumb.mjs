@@ -75,8 +75,6 @@ breadcrumb.addEventListener('item-click', event => {
   ],
 
   gaps: [
-    // zeno-breadcrumb.ts:383 against icon/zeno-icon.ts:233-250: more-horizontal is not registered.
-    'The “more” button that `max-items` adds is empty. It asks for the icon `more-horizontal`, which `zeno-icon` does not register, so the button has a label but nothing to see.',
     // zeno-breadcrumb.ts:251-255: the handler only emits the event.
     'The “more” button does not show the hidden items. It only fires `collapsed-click` with them, and the page has to do the rest.',
     // zeno-breadcrumb.ts:228-231: start is the first item, end is the last, whatever maxItems is.

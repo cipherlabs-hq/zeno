@@ -86,10 +86,6 @@ form.addEventListener('submit', event => {
   ],
 
   gaps: [
-    // zeno-file-upload.ts:803, 664-678, 683-694 use 'upload-cloud', 'image', 'film', 'music', 'file-text', 'file', 'check-circle', 'x-circle', 'upload'; zeno-icon.ts:233-252 registers none of them.
-    'The drop area icon, the file type icons and the status icons use icon names that `zeno-icon` does not have. They show nothing unless the page registers those names. Only the remove icon is built in.',
-    // zeno-file-upload.ts:714, 752, 803: size="20", "16", "48"; zeno-icon.ts:33-51 styles xs, sm, md, lg, xl only.
-    'The element gives its icons the sizes `48`, `20` and `16`, which `zeno-icon` does not have, so all of them render at the default size.',
     // zeno-file-upload.ts:497-510: emitEvent('file-error') and nothing else.
     'A file that is too large, of the wrong type or over `max-files` is dropped silently. The element fires `file-error` but shows and announces nothing.',
     // zeno-file-upload.ts:503-510: break after the first file over the limit.

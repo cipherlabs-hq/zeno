@@ -37,9 +37,6 @@ export default {
   ],
 
   gaps: [
-    // zeno-spinner.ts:260-262: role="status", aria-live="polite" and a fixed
-    // aria-busy="true" on the same element that holds the label.
-    '`aria-busy="true"` is always set on the status region itself. `aria-busy` tells assistive technology to wait before it reads a region, so the label may not be announced.',
     // zeno-spinner.ts:206-224: reduced motion removes the animation; only
     // .spinner--circle gets a replacement mark.
     'With reduced motion, the `dots`, `bars`, `ring` and `pulse` variants only stop. They get no static mark like the `circle` variant does.',

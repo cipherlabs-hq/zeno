@@ -1,6 +1,6 @@
 import { html, css, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ZenoElement } from '../base/zeno-element.js';
 import type { ComponentSize } from '../types.js';
@@ -90,6 +90,10 @@ export class ZenoTag extends ZenoElement {
       }
 
       /* Color variants */
+      .tag__prefix[hidden] {
+        display: none;
+      }
+
       .tag--default {
         background-color: var(--zeno-color-neutral-subtle);
         color: var(--zeno-color-text-primary);
@@ -305,7 +309,9 @@ export class ZenoTag extends ZenoElement {
   @property() href?: string;
   @property() target?: string;
   @property() rel?: string;
-  @property() closeLabel = 'Remove tag';
+  @property({ attribute: 'close-label' }) closeLabel = 'Remove tag';
+
+  @state() private hasPrefix = false;
 
   /**
    * Handle close button click
@@ -320,25 +326,25 @@ export class ZenoTag extends ZenoElement {
    * Render the component
    */
   override render() {
+    // The shape goes first: with the default shape its key would be
+    // `tag--default`, the same as the default variant's, and switch it off.
     const classes = {
+      ...(this.shape !== 'default' ? { [`tag--${this.shape}`]: true } : {}),
       tag: true,
       [`tag--${this.variant}`]: true,
-      [`tag--${this.shape}`]: this.shape !== 'default',
       'tag--solid': this.solid,
       'tag--bordered': this.bordered,
     };
 
     const content = html`
       ${this.dot ? html`<span part="dot" class="tag__dot"></span>` : nothing}
-      ${
-        this.hasSlot('prefix')
-          ? html`
-              <span part="prefix" class="tag__icon tag__prefix">
-                <slot name="prefix"></slot>
-              </span>
-            `
-          : nothing
-      }
+      <span
+        part="prefix"
+        class="tag__icon tag__prefix"
+        ?hidden=${!this.hasPrefix}
+      >
+        <slot name="prefix" @slotchange=${this.handlePrefixChange}></slot>
+      </span>
       <span part="label" class="tag__label">
         <slot></slot>
       </span>
@@ -381,24 +387,13 @@ export class ZenoTag extends ZenoElement {
     }
 
     return html`
-      <span
-        part="base"
-        class=${classMap(classes)}
-        role="status"
-        aria-label=${this.ariaLabel || nothing}
-        >${content}</span
-      >
+      <span part="base" class=${classMap(classes)}>${content}</span>
     `;
   }
 
-  /**
-   * Check if a slot has content
-   */
-  private hasSlot(name: string): boolean {
-    const slot = this.shadowRoot?.querySelector(
-      `slot[name="${name}"]`
-    ) as HTMLSlotElement;
-    return slot ? slot.assignedNodes({ flatten: true }).length > 0 : false;
+  private handlePrefixChange(event: Event): void {
+    const slot = event.target as HTMLSlotElement;
+    this.hasPrefix = slot.assignedNodes({ flatten: true }).length > 0;
   }
 }
 

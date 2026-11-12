@@ -47,19 +47,13 @@ export default {
 
   accessibility: [
     'Renders a native `<button>` in its shadow root.',
-    'The button is named “Open menu”, or “Close menu” while `active`. An `aria-label` on the element replaces both names.',
-    'The state is exposed with `aria-pressed`.',
+    'The button is named by `label`, “Menu” by default, or by an `aria-label` on the element. The name stays the same when the menu opens.',
+    'The open state is exposed with `aria-expanded`.',
     'With reduced motion the bars change without a transition.',
     'The button is hidden when the page is printed.',
   ],
 
   gaps: [
-    // zeno-hamburger.ts:357-360: aria-pressed only; no aria-expanded or aria-controls, and no property to set them on the inner button.
-    'The button does not set `aria-expanded` or `aria-controls`, and there is no way to set them on the inner button. Assistive technology is not told that the button opens a menu or which one.',
-    // zeno-hamburger.ts:357-360: the default name changes with `active` and aria-pressed changes too.
-    'With the default names the state is given twice: the name changes from “Open menu” to “Close menu” and `aria-pressed` changes as well. A screen reader can announce “Close menu, pressed”.',
-    // zeno-hamburger.ts:358: the two default strings are fixed.
-    '“Open menu” and “Close menu” are English only. The only way to translate them is one `aria-label` for both states.',
     // zeno-hamburger.ts:358: this.ariaLabel is read in render; it is not a reactive property.
     'The `aria-label` is read when the button renders. Changing only `aria-label` later does not update the button until `active` or another property changes.',
   ],

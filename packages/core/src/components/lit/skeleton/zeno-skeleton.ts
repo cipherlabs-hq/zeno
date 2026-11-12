@@ -274,7 +274,6 @@ export class ZenoSkeleton extends ZenoElement {
         style=${styleMap(styles)}
         role="presentation"
         aria-hidden="true"
-        aria-label="Loading"
       ></div>
     `;
   }

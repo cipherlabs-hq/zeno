@@ -1,7 +1,7 @@
 # @usezeno/core
 
 The Zeno elements, written with Lit. Importing `@usezeno/core/web-components`
-registers all 39 elements, and exports their classes and types.
+registers all 44 elements, and exports their classes and types.
 
 The elements read the `--zeno-*` custom properties from `@usezeno/tokens` and
 carry no fallback values. Load the token stylesheet once per page:

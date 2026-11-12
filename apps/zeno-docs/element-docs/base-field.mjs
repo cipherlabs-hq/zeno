@@ -71,8 +71,6 @@ export default {
     'The field means to copy `aria-describedby`, `required`, `disabled` and `aria-invalid` to the slotted control, but that code never runs. It is assigned over the slot’s `assignedElements` method and nothing calls it. Set these attributes on the control yourself.',
     // zeno-base-field.ts:249-269, 338, 351: the help and message ids are inside the shadow root.
     'Even if that code ran, `aria-describedby` could not work. The help text and the message are in the shadow root, and the control outside it cannot refer to their ids. Help text is never tied to the control.',
-    // zeno-base-field.ts:233-240 against icon/zeno-icon.ts:233-250: alert-circle, check-circle and alert-triangle are not registered.
-    'The message icons are missing. The field asks for `alert-circle`, `check-circle` and `alert-triangle`, and `zeno-icon` does not register these names.',
     // zeno-base-field.ts:201-202: Boolean property that defaults to true.
     '`show-message-icon` is on by default, and a Boolean attribute cannot be set to false in HTML. It can only be turned off from JavaScript with `showMessageIcon = false`.',
     // zeno-base-field.ts:296: the label is not rendered at all when `hideLabel` is set.
