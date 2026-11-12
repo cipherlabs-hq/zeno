@@ -232,8 +232,11 @@ are still to do.
       afterwards.
 
     **Decided: B.** The placeholders are version 0.0.1 and hold a README and
-    nothing else. After 0.1.0 is on npm, deprecate them:
+    nothing else. Deprecate each one as soon as it is published, so nobody
+    installs an empty package without a warning:
     `npm deprecate @usezeno/<name>@0.0.1 "Placeholder that reserved the name. Use 0.1.0 or later."`
+    The warning only applies to 0.0.1. It goes away when 0.1.0 is the latest
+    version.
 
     Do not merge "Version packages" (step 15) until the placeholders are on
     npm and step 12 is done. The publish fails for a package npm does not

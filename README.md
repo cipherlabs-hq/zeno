@@ -14,10 +14,11 @@ thin wrappers.
 
 ## Status
 
-**Pre-release.** The first version is 0.1.0. Until 1.0, a minor release can
-change element names, attributes, events and token names. Do not depend on
-Zeno in production yet. [Releases](https://zeno.thecipherlabs.com/releases)
-lists what is on npm.
+**Pre-release.** Zeno is at 0.x: until 1.0, a minor release can change
+element names, attributes, events and token names. Do not depend on Zeno in
+production yet. The first release will be 0.1.0.
+[Releases](https://zeno.thecipherlabs.com/releases) lists every version and
+what changed.
 
 ## Packages
 
