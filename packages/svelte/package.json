@@ -1,6 +1,6 @@
 {
   "name": "@usezeno/svelte",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Zeno for Svelte 5",
   "license": "MIT",
   "homepage": "https://zeno.thecipherlabs.com",
