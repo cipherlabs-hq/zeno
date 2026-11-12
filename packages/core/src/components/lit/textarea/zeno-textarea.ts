@@ -4,6 +4,9 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../icon/zeno-icon.js';
+import '../spinner/zeno-spinner.js';
 import { FormFieldMixin, formFieldStyles } from '../mixins/form-field.js';
 import type { InputVariant, InputSize } from '../types.js';
 

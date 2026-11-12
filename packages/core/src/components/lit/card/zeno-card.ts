@@ -2,6 +2,8 @@ import { html, css, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../spinner/zeno-spinner.js';
 
 /**
  * A bordered surface for one subject, with optional cover, header and footer.

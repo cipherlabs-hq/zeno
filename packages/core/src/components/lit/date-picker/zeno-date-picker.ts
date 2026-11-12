@@ -4,6 +4,8 @@ import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { AnchoredPopover } from '../base/anchored-popover.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../icon/zeno-icon.js';
 import { FormFieldMixin, formFieldStyles } from '../mixins/form-field.js';
 import type { DatePickerSize } from '../types.js';
 

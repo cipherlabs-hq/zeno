@@ -3,6 +3,8 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../icon/zeno-icon.js';
 import type { PaginationSize } from '../types.js';
 
 /**

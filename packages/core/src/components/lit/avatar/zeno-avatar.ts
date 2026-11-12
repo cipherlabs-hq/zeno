@@ -3,6 +3,8 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../icon/zeno-icon.js';
 import type { AvatarSize, AvatarShape, AvatarVariant } from '../types.js';
 
 /**

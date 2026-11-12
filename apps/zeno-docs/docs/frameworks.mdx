@@ -46,6 +46,11 @@ The sign-up form:
 Use `@usezeno/react`. It has one component per element, generated from the
 elements with `@lit/react`. React 18 and 19 are supported.
 
+Import the components from `@usezeno/react`, or one at a time from
+`@usezeno/react/<element>`. A bundler keeps only the elements you import:
+`pnpm check:entry-points` bundles each one with esbuild and fails when an
+entry carries an element it does not render.
+
 ```tsx
 import { ZenoInput } from '@usezeno/react';
 

@@ -4,6 +4,8 @@ import { classMap } from 'lit/directives/class-map.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../icon/zeno-icon.js';
 import { FormFieldMixin, formFieldStyles } from '../mixins/form-field.js';
 import type { FileUploadSize } from '../types.js';
 

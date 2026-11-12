@@ -1,6 +1,8 @@
 import { html, css } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import { ZenoElement } from '../base/zeno-element.js';
+// Elements this one renders, so that importing it alone is enough.
+import '../icon/zeno-icon.js';
 
 /**
  * One section that opens and closes, with any content inside. Built on a

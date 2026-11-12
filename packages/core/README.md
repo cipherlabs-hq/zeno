@@ -16,13 +16,23 @@ import '@usezeno/core/web-components';
 <zeno-button type="submit">Sign up</zeno-button>
 ```
 
-There is one entry point, and it registers every element. An app that uses
-two elements still loads all of them (about 75 kB of JavaScript after gzip,
-Lit included).
+That entry registers every element (about 75 kB of JavaScript after gzip, Lit
+included). To load only what a page uses, import elements one by one. Each
+entry registers its element and the elements it renders, nothing else:
+
+```js
+import '@usezeno/core/input'; // zeno-input, and zeno-icon and zeno-spinner it renders
+import '@usezeno/core/button';
+```
+
+Lit and the shared base are about 8 kB of that; one element adds 1 to 10 kB.
+`pnpm check:entry-points --sizes` at the repository root lists them all.
 
 ## What the build produces
 
 - `dist/web-components.js` and its types.
+- `dist/elements/<element>.js`, one entry point per element
+  (`@usezeno/core/<element>`).
 - `dist/custom-elements.json`, a
   [custom-elements manifest](https://github.com/webcomponents/custom-elements-manifest)
   that lists every element's properties, attributes, events, slots and parts.

@@ -1,14 +1,16 @@
 // Writes the framework bindings from the custom-elements manifest that the
 // @usezeno/core build produces:
 //
-//   packages/react/src/index.ts              React components (@lit/react)
+//   packages/react/src/<element>.ts          a React component per element (@lit/react)
+//   packages/react/src/index.ts              all of them
+//   packages/core/src/elements/<element>.ts  an entry point per element
 //   packages/vue/src/elements/generated.ts   template types for Vue
 //   packages/svelte/src/elements.ts          markup types for Svelte
 //
 // Run `pnpm generate` after changing an element's properties or events.
 // `pnpm generate:check` fails when a committed file is out of date.
 
-import { readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import prettier from 'prettier';
@@ -101,40 +103,49 @@ function members(lines) {
     : 'Record<never, never>';
 }
 
-function react(elements) {
-  const types = detailTypes(elements);
-  const components = elements.map(element => {
-    const events = element.events.map(
-      event =>
-        `${docComment(event.description, '    ')}    on${pascal(event.name)}: '${event.name}' as EventName<${event.type}>,`
-    );
-    return `${docComment(element.description)}export const ${element.className} = createComponent({
+/** The short name of an element, used for its entry point: `zeno-button` is `button`. */
+const shortName = element => element.tagName.replace(/^zeno-/, '');
+
+function reactComponent(element) {
+  const types = detailTypes([element]);
+  const events = element.events.map(
+    event =>
+      `${docComment(event.description, '    ')}    on${pascal(event.name)}: '${event.name}' as EventName<${event.type}>,`
+  );
+  return `${HEADER}
+import * as React from 'react';
+import { createComponent${events.length > 0 ? ', type EventName' : ''} } from '@lit/react';
+import { ${element.className} as ${element.className}Element } from '@usezeno/core/${shortName(element)}';
+${types.length > 0 ? `import type { ${types.join(', ')} } from '${CORE}';\n` : ''}
+export type { ${element.className}Element };
+
+${docComment(element.description)}export const ${element.className} = /*#__PURE__*/ createComponent({
   tagName: '${element.tagName}',
   elementClass: ${element.className}Element,
   react: React,
   displayName: '${element.className}',${
     events.length > 0 ? `\n  events: {\n${events.join('\n')}\n  },` : ''
   }
-});`;
-  });
+});
+`;
+}
 
+function react(elements) {
   return `${HEADER}
-import * as React from 'react';
-import { createComponent, type EventName } from '@lit/react';
-import {
-${elements.map(e => `  ${e.className} as ${e.className}Element,`).join('\n')}
-} from '${CORE}';
-import type { ${types.join(', ')} } from '${CORE}';
-
-// The element classes, for refs: useRef<ZenoModalElement>(null).
-export type {
-${elements.map(e => `  ${e.className}Element,`).join('\n')}
-};
+// Every element. An app that uses a few can import them one by one instead,
+// from '@usezeno/react/button' and so on, and load only those.
+${elements.map(e => `export { ${e.className}, type ${e.className}Element } from './${shortName(e)}.js';`).join('\n')}
 
 // The types that event details and properties use.
 export type * from '${CORE}';
+`;
+}
 
-${components.join('\n\n')}
+/** One entry point per element in @usezeno/core: '@usezeno/core/button'. */
+function coreEntry(element) {
+  return `${HEADER}
+// Registers <${element.tagName}> and the elements it renders, and nothing else.
+export * from '../components/lit/${shortName(element)}/${element.tagName}.js';
 `;
 }
 
@@ -227,6 +238,15 @@ declare module 'svelte/elements' {
 const elements = await readElements();
 const outputs = {
   'packages/react/src/index.ts': react(elements),
+  ...Object.fromEntries(
+    elements.flatMap(element => [
+      [`packages/react/src/${shortName(element)}.ts`, reactComponent(element)],
+      [
+        `packages/core/src/elements/${shortName(element)}.ts`,
+        coreEntry(element),
+      ],
+    ])
+  ),
   'packages/vue/src/elements/generated.ts': vue(elements),
   'packages/svelte/src/elements.ts': svelte(elements),
 };
@@ -245,6 +265,7 @@ for (const [path, source] of Object.entries(outputs)) {
   if (check) {
     stale.push(path);
   } else {
+    await mkdir(dirname(file), { recursive: true });
     await writeFile(file, formatted);
     console.log(`wrote ${path}`);
   }
