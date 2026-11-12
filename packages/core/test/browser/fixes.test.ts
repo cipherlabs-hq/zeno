@@ -140,3 +140,27 @@ describe('zeno-hamburger', () => {
     expect(button.getAttribute('aria-label')).toBe('Menu');
   });
 });
+
+describe('zeno-button state for assistive technology', () => {
+  it('names an icon-only button and reports expanded and pressed', async () => {
+    const main = await mount(`
+      <zeno-button id="icon" icon-only label="Show on the map"><zeno-icon name="map"></zeno-icon></zeno-button>
+      <zeno-button id="filters" expanded="false">Filters</zeno-button>
+      <zeno-button id="list" variant="ghost" pressed>List</zeno-button>
+      <zeno-button id="plain">Plain</zeno-button>`);
+    const inner = (id: string) =>
+      main.querySelector(`#${id}`)!.shadowRoot!.querySelector('button')!;
+    expect(inner('icon').getAttribute('aria-label')).toBe('Show on the map');
+    expect(inner('filters').getAttribute('aria-expanded')).toBe('false');
+    expect(inner('list').getAttribute('aria-pressed')).toBe('true');
+    expect(inner('plain').hasAttribute('aria-pressed')).toBe(false);
+    expect(inner('plain').hasAttribute('aria-expanded')).toBe(false);
+    const filters = main.querySelector('#filters') as HTMLElement & {
+      expanded?: boolean;
+    };
+    filters.expanded = true;
+    await settle(main);
+    expect(inner('filters').getAttribute('aria-expanded')).toBe('true');
+    await expectAccessible(main);
+  });
+});

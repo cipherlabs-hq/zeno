@@ -62,6 +62,8 @@ form.addEventListener('submit', event => {
   ],
 
   accessibility: [
+    '`label` (or an `aria-label` on the element) names the inner button or link. An `icon-only` button needs one.',
+    '`expanded` and `pressed` set `aria-expanded` and `aria-pressed` on the inner button, for a button that opens a panel or a toggle button. Left unset, the attributes are not rendered.',
     'Renders a native `<button>` in its shadow root, or a native `<a>` when `href` is set, so the role and keyboard behaviour are the browser’s own.',
     'Focus is delegated to the inner control. `aria-label` and the other ARIA attributes set on the element are copied to it.',
     '`loading` disables the inner button and sets `aria-busy="true"`. The spinner is hidden from assistive technology.',
@@ -73,6 +75,5 @@ form.addEventListener('submit', event => {
     'The `variant` type also lists `tertiary`, `link` and `glass`. The element has no styles for them, so they render as an unstyled button.',
     'The `xs` size is styled, but the `size` type does not list it, so TypeScript and the framework wrappers reject it.',
     'Nothing announces the change when `loading` starts or ends, beyond `aria-busy`.',
-    'An `icon-only` button without an `aria-label` has no accessible name, and the element does not warn about it.',
   ],
 };

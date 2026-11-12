@@ -199,6 +199,13 @@ export class ZenoButton extends ZenoElement {
         background-color: var(--zeno-color-background-active);
       }
 
+      /* A pressed toggle button */
+      .button[aria-pressed='true'] {
+        background-color: var(--zeno-color-accent-subtle);
+        color: var(--zeno-color-accent-text);
+        box-shadow: inset 0 0 0 1px var(--zeno-color-accent-border);
+      }
+
       /* Outline variant - Border only */
       .button--outline {
         background-color: transparent;
@@ -345,6 +352,21 @@ export class ZenoButton extends ZenoElement {
   @property() target?: string;
   @property() rel?: string;
   @property() download?: string;
+  /**
+   * The accessible name of the inner button or link. Use it for a button
+   * whose content is only an icon. An `aria-label` on the element works too.
+   */
+  @property() label?: string;
+  /**
+   * For a button that shows or hides something, such as a filter panel:
+   * sets `aria-expanded` on the inner button. Leave it unset otherwise.
+   */
+  @property({ converter: optionalBoolean }) expanded?: boolean;
+  /**
+   * For a toggle button: sets `aria-pressed` on the inner button. Leave it
+   * unset for an ordinary button.
+   */
+  @property({ converter: optionalBoolean }) pressed?: boolean;
 
   @state() private isRippling = false;
   @state() private rippleX = 0;
@@ -449,6 +471,10 @@ export class ZenoButton extends ZenoElement {
   /**
    * Render the component
    */
+  private get accessibleName(): string | undefined {
+    return this.label || this.ariaLabel || undefined;
+  }
+
   override render() {
     const classes = {
       button: true,
@@ -470,6 +496,7 @@ export class ZenoButton extends ZenoElement {
                 target=${ifDefined(this.target)}
                 rel=${ifDefined(this.rel)}
                 download=${ifDefined(this.download)}
+                aria-label=${ifDefined(this.accessibleName)}
                 aria-disabled=${ifDefined(this.isDisabled ? 'true' : undefined)}
                 tabindex=${ifDefined(this.isDisabled ? '-1' : undefined)}
                 @click=${this.handleClick}
@@ -483,6 +510,9 @@ export class ZenoButton extends ZenoElement {
                 class=${classMap(classes)}
                 type="button"
                 ?disabled=${this.isDisabled || this.loading}
+                aria-label=${ifDefined(this.accessibleName)}
+                aria-expanded=${ifDefined(ariaState(this.expanded))}
+                aria-pressed=${ifDefined(ariaState(this.pressed))}
                 @click=${this.handleClick}
               >
                 ${this.renderContent()}
@@ -536,6 +566,15 @@ export class ZenoButton extends ZenoElement {
       }
     `;
   }
+}
+
+/** Reads `expanded="false"` as false and a missing attribute as unset. */
+function optionalBoolean(value: string | null): boolean | undefined {
+  return value === null ? undefined : value !== 'false';
+}
+
+function ariaState(value: boolean | undefined): 'true' | 'false' | undefined {
+  return value === undefined ? undefined : value ? 'true' : 'false';
 }
 
 declare global {
