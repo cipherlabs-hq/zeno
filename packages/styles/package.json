@@ -1,7 +1,6 @@
 {
   "name": "@usezeno/styles",
   "version": "0.0.0",
-  "private": true,
   "description": "Sass variables for the Vue single-file components, generated from @usezeno/tokens",
   "license": "MIT",
   "homepage": "https://zeno.thecipherlabs.com",

@@ -14,9 +14,10 @@ thin wrappers.
 
 ## Status
 
-**Pre-release.** Nothing is published to npm, and the packages are marked
-private. Element names, attributes, events and token names can change without
-notice. Do not depend on Zeno in production yet.
+**Pre-release.** The first version is 0.1.0. Until 1.0, a minor release can
+change element names, attributes, events and token names. Do not depend on
+Zeno in production yet. [Releases](https://zeno.thecipherlabs.com/releases)
+lists what is on npm.
 
 ## Packages
 
@@ -54,7 +55,7 @@ import '@usezeno/core/web-components';
 
 The documentation site covers every element, the tokens, forms, theming and
 each framework. Its source is in `apps/zeno-docs`, and `pnpm docs:dev` serves
-it on your machine. It is not on the web yet. Its address will be
+it on your machine. It is published at
 [zeno.thecipherlabs.com](https://zeno.thecipherlabs.com).
 
 ## Building
