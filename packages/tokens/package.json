@@ -1,7 +1,6 @@
 {
   "name": "@usezeno/tokens",
   "version": "0.0.0",
-  "private": true,
   "description": "Zeno design tokens: CSS custom properties and a JS/TS export, built with Style Dictionary",
   "license": "MIT",
   "homepage": "https://zeno.thecipherlabs.com",

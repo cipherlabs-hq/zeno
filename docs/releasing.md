@@ -3,10 +3,10 @@
 How a release is made, how the site is hosted, and the list of steps that take
 Zeno from this repository to npm and the web for the first time.
 
-**State on 2026-11-11:** nothing here has run outside a laptop. There is no
-GitHub repository, nothing is on npm, and the site is not deployed. Every
-package is marked `"private": true`. The parts that could be tried locally were
-tried, and each section says which.
+**State on 2026-11-11:** the repository is public at `cipherlabs-hq/zeno`,
+`CI` passes on GitHub, and the site is live at zeno.thecipherlabs.com. Nothing
+is on npm yet, so no release has been made. Each section says what has been
+tried and what has not.
 
 ## What gets released
 
@@ -72,11 +72,18 @@ repository and this workflow file.
   tarballs into a new project outside the repository, type-checks a React
   file against the shipped types, and loads a bundled page in Chromium.
 
+### What has run on GitHub
+
+- `CI` on `main`, on GitHub's Linux runners, browser tests included.
+- `Release`, once, while every package was still private. Its `version` job
+  ran, changed no file, published nothing, and opened an empty "Version
+  packages" pull request, which was closed.
+
 ### What was not tried
 
-The workflows have never run. Not tried: the "Version packages" pull request,
-the publish to npm, trusted publishing, provenance, the tags and the GitHub
-Releases. The first release is the test of all of them.
+A "Version packages" pull request with changes in it, the publish to npm,
+trusted publishing, provenance, the tags and the GitHub Releases. The first
+release is the test of all of them.
 
 ## The changelog
 
@@ -93,10 +100,11 @@ Releases. The first release is the test of all of them.
 
 ## The site on Cloudflare Pages
 
-The site is the Docusaurus project in `apps/zeno-docs`. These are the settings
-for a Pages project connected to the GitHub repository. They come from the
-Cloudflare documentation and a clean local build. No deploy has been made, so
-treat the first deploy as the test.
+The site is the Docusaurus project in `apps/zeno-docs`. The Pages project is
+called `usezeno`, so its own address is `usezeno.pages.dev`, and its custom
+domain is `zeno.thecipherlabs.com`. It is connected to the GitHub repository
+with these settings, and it builds with them. A pull request gets a preview
+address from Pages.
 
 | Setting                | Value                                          |
 | ---------------------- | ---------------------------------------------- |
@@ -115,10 +123,8 @@ built pages against `_headers`.
 The root directory has to be the repository root: the site depends on two
 workspace packages and the lockfile is at the root.
 
-Not confirmed: that Pages installs the dependencies with pnpm by itself when
-it finds `pnpm-lock.yaml`. If the first build fails at the install step, set
-`SKIP_DEPENDENCY_INSTALL` = `1` and change the build command to
-`pnpm install --frozen-lockfile && pnpm docs:build`.
+Pages installs the dependencies with pnpm by itself: no install command and
+no `SKIP_DEPENDENCY_INSTALL` are set.
 
 ### Headers
 
@@ -140,8 +146,13 @@ so that only `zeno.thecipherlabs.com` is indexed.
 - `Strict-Transport-Security` is set for one year, without
   `includeSubDomains`.
 - The policy was tried in Chromium by adding the headers to a local preview
-  (`apps/zeno-docs/scripts/preview-screenshots.mjs`). It has not been seen
-  served by Cloudflare.
+  (`apps/zeno-docs/scripts/preview-screenshots.mjs`). On 2026-11-11 the
+  headers were read as Cloudflare serves them on both addresses, and an
+  element page on `usezeno.pages.dev` loaded in Chromium with nothing in the
+  console. Firefox and Safari have not been tried.
+- Cloudflare puts its own "content signals" text at the top of
+  `/robots.txt` on the custom domain. It is a setting of the
+  `thecipherlabs.com` zone, not a file in this repository.
 
 No `_redirects` file is needed. Pages serves `/elements` from
 `elements.html`, Docusaurus writes `404.html`, and the site has no old
@@ -150,59 +161,52 @@ addresses to keep alive.
 ## Going public: the checklist
 
 In order. "Owner" steps need an account, a decision or a login. "Agent" steps
-are changes in the repository that can be prepared as a pull request.
+are changes in the repository that can be prepared as a pull request. Steps 1
+to 9 and step 13 were done on 2026-11-11 and say what was done. The others
+are still to do.
 
 ### Before anything is pushed
 
-1. **Owner. Decide what the history shows.** Every commit is authored with a
-   personal email address, and it becomes public with the repository. Keep
-   it, or rewrite the history before the first push. After the push it cannot
-   be taken back.
-2. **Owner. Decide which packages are published.** Nothing depends on
-   `@usezeno/styles`, so it can stay private. `@usezeno/vue` depends on
-   `@usezeno/composables`, so those two go together. `pnpm release:check`
+1. **Done. What the history shows.** The public history starts at one commit
+   authored with the company email address. The earlier history was not
+   pushed.
+2. **Done. Which packages are published.** All seven. Nothing depends on
+   `@usezeno/styles`, so it could have stayed private. `@usezeno/vue` depends
+   on `@usezeno/composables`, so those two go together. `pnpm release:check`
    fails if a public package depends on a private one.
 
 ### Repository
 
-3. **Owner. Create the public repository `cipherlabs-hq/zeno`**, empty, with
-   no README or licence added by GitHub. The name matters: the workflows only
-   run in `cipherlabs-hq/zeno`, and npm compares it with `repository.url` in
-   each `package.json`.
-4. **Owner. Set up the repository before the first push:**
-   - Settings, Actions, General: turn on "Allow GitHub Actions to create and
-     approve pull requests". The "Version packages" pull request needs it.
-   - Settings, Code security: turn on "Private vulnerability reporting".
-     `SECURITY.md` and the site send people there.
-   - Protect `main`: require a pull request and the `check` job of the `CI`
-     workflow.
-5. **Owner. Push `main`.**
-
-   ```bash
-   git remote add origin git@github.com:cipherlabs-hq/zeno.git
-   git push -u origin main
-   ```
-
-   `CI` runs. `Release` runs too. It finds the first changeset, so its
-   `version` job starts, but `changeset version` changes no file while the
-   packages are private, and nothing is published. Whether the job still
-   opens an empty pull request has not been seen. Close it if it does.
-
-6. **Agent. Check the first CI run** and fix what differs from the local
-   runs. The browser tests have only ever run on a Mac.
+3. **Done. The public repository `cipherlabs-hq/zeno`.** The name matters:
+   the workflows only run in `cipherlabs-hq/zeno`, and npm compares it with
+   `repository.url` in each `package.json`.
+4. **Done. Repository settings:**
+   - Settings, Actions, General: "Allow GitHub Actions to create and approve
+     pull requests" is on. The "Version packages" pull request needs it.
+   - Settings, Code security: "Private vulnerability reporting" is on.
+     `SECURITY.md` and the site send people there. Secret scanning and push
+     protection are on.
+   - A ruleset protects `main`: changes need a pull request and the `check`
+     job of the `CI` workflow, and nobody can force-push or delete it.
+5. **Done. `main` was pushed.** `CI` passed. `Release` ran too: it found the
+   first changeset, so its `version` job started, but `changeset version`
+   changes no file while the packages are private. Nothing was published. It
+   did open an empty "Version packages" pull request, which was closed.
+6. **Done. The first CI run passed** as pushed, browser tests included. Until
+   then they had only run on a Mac.
 
 ### Site
 
-7. **Owner. Create the Cloudflare Pages project** from the repository with
-   the settings above. Check the `*.pages.dev` address it gives you.
-8. **Owner. Add the custom domain `zeno.thecipherlabs.com`** to the Pages
-   project. If the `thecipherlabs.com` zone is in the same Cloudflare account,
-   Pages adds the DNS record itself. If not, add it by hand in the zone:
-   `CNAME`, name `zeno`, target `<project>.pages.dev`, proxied.
-9. **Agent. Check the live site:** the response headers on
-   `https://zeno.thecipherlabs.com`, no errors in the browser console (a
-   blocked script shows up there), and that the `*.pages.dev` address answers
-   with `X-Robots-Tag: noindex`.
+7. **Done. The Cloudflare Pages project `usezeno`,** made from the repository
+   with the settings above. The first build passed.
+8. **Done. The custom domain `zeno.thecipherlabs.com`.** The
+   `thecipherlabs.com` zone is in the same Cloudflare account, so Pages added
+   the DNS record itself: `CNAME`, name `zeno`, target `usezeno.pages.dev`,
+   proxied.
+9. **Done. The live site was checked:** the response headers on
+   `https://zeno.thecipherlabs.com`, no errors in the browser console on
+   `usezeno.pages.dev` (a blocked script shows up there), and that the
+   `*.pages.dev` address answers with `X-Robots-Tag: noindex`.
 
 ### npm
 
@@ -227,8 +231,16 @@ are changes in the repository that can be prepared as a pull request.
       to `release.yml` and a secret in the repository, both removed
       afterwards.
 
-    This document does not pick one. Whichever it is, do not flip `private`
-    (step 13) until it is settled.
+    **Decided: B.** The placeholders are version 0.0.1 and hold a README and
+    nothing else. Deprecate each one as soon as it is published, so nobody
+    installs an empty package without a warning:
+    `npm deprecate @usezeno/<name>@0.0.1 "Placeholder that reserved the name. Use 0.1.0 or later."`
+    The warning only applies to 0.0.1. It goes away when 0.1.0 is the latest
+    version.
+
+    Do not merge "Version packages" (step 15) until the placeholders are on
+    npm and step 12 is done. The publish fails for a package npm does not
+    know, or one without a trusted publisher.
 
 12. **Owner. Set up the trusted publisher for each published package** on
     npmjs.com (package, Settings, Trusted publishing), when the package
@@ -242,25 +254,16 @@ are changes in the repository that can be prepared as a pull request.
 
 ### The first release
 
-13. **Agent. Flip `private`,** in one pull request, while
-    `.changeset/first-release.md` is still there:
-    - delete the line `"private": true,` from `package.json` in
-      `packages/tokens`, `core`, `react`, `vue`, `svelte`, `composables` and,
-      if it is being published, `styles`
-    - leave it in the root `package.json`, `packages/storybook`,
-      `apps/zeno-docs` and `examples/*`
-    - in the root `README.md`, replace the two sentences in "Status" that
-      say nothing is published and the packages are private
-    - in `.github/workflows/release.yml`, remove the comment that says
-      nothing is versioned or published while every package is private
-    - run `pnpm release:check`. It fails when a public package is still at
-      0.0.0 with no changeset waiting, which is the state that would publish
-      0.0.0.
+13. **Done. `private` was flipped,** in one pull request, while
+    `.changeset/first-release.md` was still there. The line
+    `"private": true,` is gone from `package.json` in `packages/tokens`,
+    `core`, `react`, `vue`, `svelte`, `composables` and `styles`. It stays in
+    the root `package.json`, `packages/storybook`, `apps/zeno-docs` and
+    `examples/*`. `pnpm release:check` passed: it fails when a public package
+    is still at 0.0.0 with no changeset waiting, which is the state that
+    would publish 0.0.0.
 
-    Nothing else changes: `publishConfig`, `exports`, `files`, `repository`
-    and the rest are already in place.
-
-14. **Owner. Merge it.** `Release` now finds a changeset and public packages
+14. **Owner. Merge that pull request.** `Release` now finds a changeset and public packages
     and opens "Version packages": 0.1.0 in every published package, the
     package changelogs, and the entry in the root `CHANGELOG.md`.
 15. **Owner. Run `CI` by hand on the "Version packages" branch,** read the

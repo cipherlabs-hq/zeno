@@ -9,7 +9,6 @@
 # repository. Only the `publish` job can ask for an identity token, and it never
 # runs a build: it publishes the tarballs the `pack` job made.
 #
-# While every package is `"private": true` nothing is versioned or published.
 # docs/releasing.md has the full process.
 name: Release
 

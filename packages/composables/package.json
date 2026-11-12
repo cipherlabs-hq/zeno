@@ -1,7 +1,6 @@
 {
   "name": "@usezeno/composables",
   "version": "0.0.0",
-  "private": true,
   "description": "Vue composables that accompany the Zeno Vue components",
   "license": "MIT",
   "homepage": "https://zeno.thecipherlabs.com",
